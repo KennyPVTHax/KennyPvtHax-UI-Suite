@@ -40,9 +40,9 @@ def enter_key():
 adb('shell','pm','clear',pkg);start();capture('login-default')
 enter_key();tap('save_key');status('Key saved securely on this device.')
 prefs=adb('exec-out','run-as',pkg,'cat','shared_prefs/kenny-credentials.xml');assert b'local-ui-fixture' not in prefs and b'ciphertext' in prefs and b'iv' in prefs
-start();assert node(dump(),'login_key').get('text','')!='','Encrypted saved key was not restored'
+start();assert node(dump(),'login_key').get('text','') not in ('','License key'),'Encrypted saved key was not restored'
 tap('sign_in');status('Authentication service is not configured. No credentials were accepted.');capture('login-error')
-tap('forget_key');status('Saved key removed.');start();assert node(dump(),'login_key').get('text','')==''
+tap('forget_key');status('Saved key removed.');assert b'ciphertext' not in adb('exec-out','run-as',pkg,'cat','shared_prefs/kenny-credentials.xml');start();assert node(dump(),'login_key').get('text','') in ('','License key')
 tap('language');locate('language_en');capture('login-language-dialog');tap('language_zh',False)
 for locale,label in [('zh','欢迎使用 KennyPvtHax'),('hi','KennyPvtHax में आपका स्वागत है'),('ar','مرحبًا بك في KennyPvtHax')]:
  if locale!='zh':tap('language');tap('language_'+locale,False)
