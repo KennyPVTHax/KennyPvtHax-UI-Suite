@@ -33,3 +33,7 @@ Host verification passed: 1,575 original C++/Java numeric samples with maximum a
 - Source-derived tokens, component geometry and Aurora simulation are retained. Portrait composition, Android sans-serif instead of the restricted original font, platform keyboard and neutral edition badges are documented differences. No pixel-perfect parity is claimed.
 - Aurora model checks and emulator lifecycle tests passed. Physical-device frame time, thermal behavior, accessibility/font-scale coverage, keyboard variations and speaker audibility remain unverified. Emulator runs disable system animations and cannot establish device FPS or sound output.
 - No `menu-ui/`, Anilxkenny, original native loading, hooks, SDK or gameplay changes were made. App media is the existing tap sample only; no Anime content or voices were added.
+
+## Final motion pass
+
+A final source review added the requested lightweight page entrance: native View-property opacity, 180ms, no input/state delay, skipped under Reduced Motion and cancelled to full opacity on pause/destruction/capture. Earlier screenshots remain representative because deterministic capture explicitly finishes the entrance. The final main-branch run linked in the APK delivery must be used for the build including this motion pass; the screenshot inventory retains its actual earlier source/run provenance.

@@ -110,3 +110,5 @@ This runs the login tests, all four cards/disabled actions, scrolling, logout/Ba
 ## Installing a verified debug APK
 
 Download the APK artifact from the documented successful Actions run, extract it and install `KennyPvtHax-UI-Suite-debug.apk` (or use `adb install -r <apk>`). Minimum Android version is 8.0/API 26. Debug signing is for testing only. CI runners generate separate debug keystores, so APKs from different runs may have incompatible signatures. If Android rejects an update, retain any data you need before choosing to uninstall the previous test app; uninstall removes this app's encrypted preferences and keys. Do not delete user data automatically. Use an owner-managed signing configuration outside public Git for stable update identity; production signing is not part of this UI checkpoint.
+
+Login/dashboard navigation adds only a 180ms opacity entrance over the shared Aurora; it never delays authentication state or blocks controls. Reduced Motion skips it. Pause/destruction and deterministic capture cancel it to full opacity, preventing a resumed half-faded page.

@@ -135,7 +135,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         if(debug)full(content,button(R.string.preview_dashboard,R.id.preview_dashboard,this::enterPreview));
         full(content,button(R.string.app_preferences,R.id.app_preferences,this::appearanceDialog));
         text(content,R.string.footer,11,Tokens.SECONDARY);
-        content.setFocusableInTouchMode(true);content.requestFocus();updateStatus();
+        content.setFocusableInTouchMode(true);content.requestFocus();updateStatus();revealPage();
     }
     private void submit(){
         if(ioBusy||auth.phase()==AuthController.Phase.LOADING)return;
@@ -171,7 +171,14 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         space(content,12);text(content,R.string.footer,12,Tokens.SECONDARY);
         full(content,button(R.string.app_preferences,R.id.app_preferences,this::appearanceDialog));
         full(content,button(R.string.logout,R.id.logout,auth::logout));text(content,R.string.app_info,11,Tokens.SECONDARY);
-        content.setFocusableInTouchMode(true);content.requestFocus();refreshEditions();
+        content.setFocusableInTouchMode(true);content.requestFocus();refreshEditions();revealPage();
+    }
+    private void finishPageTransition(){content.animate().cancel();content.setAlpha(1);}
+    private void revealPage(){
+        finishPageTransition();
+        if(KennyComponents.reducedMotion||frozen)return;
+        // Presentation only: page state and input are already active, with no authentication delay.
+        content.setAlpha(.72f);content.animate().alpha(1).setDuration(180).start();
     }
     private void refreshEditions(){
         final int generation=pageGeneration;GameCatalog.Edition[] editions=GameCatalog.editions();
@@ -186,7 +193,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         LinearLayout panel=KennyComponents.panel(getContext());panel.setId(R.id.preferences_dialog);panel.setBackground(KennyComponents.surface(getContext(),Tokens.ELEVATED,Tokens.OUTLINE,12));
         text(panel,R.string.app_preferences,20,Tokens.TEXT);
         KennyComponents.Check reduced=new KennyComponents.Check(getContext(),str(R.string.reduced_motion));reduced.setId(R.id.reduced_motion);reduced.setChecked(KennyComponents.reducedMotion);
-        reduced.setOnClickListener(v->{sound.play();KennyComponents.reducedMotion=reduced.isChecked();preferences.edit().putBoolean("reduced",reduced.isChecked()).apply();aurora.setReduced(reduced.isChecked());if(frozen)aurora.stop();if(spinner!=null)spinner.invalidate();});full(panel,reduced);
+        reduced.setOnClickListener(v->{sound.play();KennyComponents.reducedMotion=reduced.isChecked();preferences.edit().putBoolean("reduced",reduced.isChecked()).apply();aurora.setReduced(reduced.isChecked());if(reduced.isChecked())finishPageTransition();if(frozen)aurora.stop();if(spinner!=null)spinner.invalidate();});full(panel,reduced);
         KennyComponents.Check sounds=new KennyComponents.Check(getContext(),str(R.string.ui_sounds));sounds.setId(R.id.tap_sounds);sounds.setChecked(sound.enabled);
         sounds.setOnClickListener(v->{sound.play();sound.enabled=sounds.isChecked();preferences.edit().putBoolean("sounds",sound.enabled).apply();});full(panel,sounds);
         full(panel,button(R.string.cancel,View.NO_ID,()->dialog.dismiss()));dialog.setContentView(panel);dialog.show();
@@ -251,8 +258,8 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         dialog.show();if(dialog.getWindow()!=null)dialog.getWindow().setLayout(Math.min(getWidth()-dp(32),dp(420)),-2);
     }
     void resume(){if(!frozen)aurora.start();if(dashboard)refreshEditions();if(spinner!=null)spinner.running(auth.phase()==AuthController.Phase.LOADING);}
-    void pause(){aurora.stop();spinner.running(false);if(dialog!=null){dialog.dismiss();dialog=null;}}
-    void freezePreview(float seconds){if(!Float.isFinite(seconds)||seconds<0||seconds>60)return;frozen=true;aurora.stop();aurora.model.time=seconds;aurora.model.particleTime=seconds;aurora.invalidate();}
+    void pause(){finishPageTransition();aurora.stop();spinner.running(false);if(dialog!=null){dialog.dismiss();dialog=null;}}
+    void freezePreview(float seconds){if(!Float.isFinite(seconds)||seconds<0||seconds>60)return;frozen=true;finishPageTransition();aurora.stop();aurora.model.time=seconds;aurora.model.particleTime=seconds;aurora.invalidate();}
     public boolean dispatchTouchEvent(MotionEvent event){aurora.touch(event.getX()-aurora.getLeft(),event.getY()-aurora.getTop(),event.getActionMasked()!=MotionEvent.ACTION_UP&&event.getActionMasked()!=MotionEvent.ACTION_CANCEL);return super.dispatchTouchEvent(event);}
     public void close(){closed=true;pause();auth.close();io.shutdownNow();if(key!=null)key.setText("");sound.close();}
 }
