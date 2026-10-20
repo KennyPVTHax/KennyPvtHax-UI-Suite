@@ -1,0 +1,17 @@
+{
+  "runtime": "GitHub Android emulator",
+  "checks": [
+    "masked input/focus",
+    "AES-GCM save and process-death restore",
+    "forget and empty restore",
+    "unconfigured authentication error",
+    "four locales",
+    "Arabic mirrored header",
+    "persistent locale",
+    "real pending request/cancel fixture"
+  ],
+  "development_only_loading_fixture": true,
+  "production_auth_verified": false,
+  "physical_device_verified": false,
+  "audio_audibility_verified": false
+}
