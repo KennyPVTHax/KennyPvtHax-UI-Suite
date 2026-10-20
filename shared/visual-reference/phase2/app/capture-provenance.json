@@ -1,0 +1,160 @@
+{
+  "source_commit": "14cf927dbd42d0fa13ca03e3afb6d50538f23cc6",
+  "actions_run": "https://github.com/KennyPVTHax/KennyPvtHax-UI-Suite/actions/runs/39445549575",
+  "capture_artifact": 12276921627,
+  "runtime": "Accelerated Android API 30 x86_64 emulator, Pixel 2 profile",
+  "capture_mode": "Actual APK screenshots; Aurora visual time held at 3s; loading uses explicit debug pending request",
+  "checks": {
+    "runtime": "GitHub Android emulator",
+    "checks": [
+      "masked input/focus",
+      "AES-GCM save and process-death restore",
+      "forget and empty restore",
+      "unconfigured authentication error",
+      "four locales",
+      "Arabic mirrored header",
+      "persistent locale",
+      "real pending request/cancel fixture",
+      "compact 360x640dp layout and scrolling",
+      "explicit debug dashboard preview",
+      "all four edition/package cards and scrolling",
+      "all eight unavailable actions disabled on clean emulator",
+      "logout/back to login",
+      "dashboard Arabic RTL/recreation",
+      "Reduced Motion and tap-sound settings persist",
+      "pause/resume process survives"
+    ],
+    "development_only_loading_fixture": true,
+    "production_auth_verified": false,
+    "physical_device_verified": false,
+    "audio_audibility_verified": false
+  },
+  "images": [
+    {
+      "file": "dashboard-ar.png",
+      "bytes": 396073,
+      "sha256": "848998c41fa22e5bd62dd087d1eb6ad0088e01da8fb89350904b6c55692aa1a0",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "dashboard-compact.png",
+      "bytes": 245915,
+      "sha256": "9189c4e7187577e25f484a34c5664529dde72262ff812ec08bde58a62268a531",
+      "dimensions": [
+        720,
+        1280
+      ]
+    },
+    {
+      "file": "dashboard-initial.png",
+      "bytes": 405805,
+      "sha256": "db0ca917ff67993c8b62b5de8473794002890c46a24dc30d5a78b912e1406a45",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "dashboard-preferences.png",
+      "bytes": 154101,
+      "sha256": "03272ebb3e0ec1b6bd5151893b311f76802b59a38d4dc4c0d0fad7e1fb25251a",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "dashboard-scrolled.png",
+      "bytes": 238133,
+      "sha256": "138a756cf9bc598a7d44a249751ecfa02f0ee3fdba8fec31d54263948cc0b38b",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-ar.png",
+      "bytes": 259505,
+      "sha256": "8c83d5ff546ec7ecb719f84a703e510274fde14a552dad1d43370ed813d83471",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-compact.png",
+      "bytes": 179776,
+      "sha256": "f66076021b5fb1bd476258ad03b4b2189e6f7c96cddb09dfcb7b46a3ead13112",
+      "dimensions": [
+        720,
+        1280
+      ]
+    },
+    {
+      "file": "login-default.png",
+      "bytes": 254139,
+      "sha256": "30dd8a3a82d341b44fc172eb1ffad2aae94cb29ec002aa9f6bfd130b0d294afb",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-error.png",
+      "bytes": 227111,
+      "sha256": "e812f5625d59794b91cf6d0bbd33c5f3c4443c13cf6bcb895faf4175fb140459",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-focused.png",
+      "bytes": 252947,
+      "sha256": "d1cc7705749d92d5c2e9fe8d0c043ce222c5276018f8a8628a8bb18b6975355b",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-hi.png",
+      "bytes": 258066,
+      "sha256": "e5a9a655e7e23d1b5c1de6d911487e50d1f9824630874733f4ed04c0646f3617",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-language-dialog.png",
+      "bytes": 114041,
+      "sha256": "b13f6885314080c6f0ff5c97547e9ae6978d31c678c8e9e37f21021ca1dd546a",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-loading.png",
+      "bytes": 209532,
+      "sha256": "3a88be10787d8570daffda27fe9502b19acd78a3d89c821b8a06b29876b97cda",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    },
+    {
+      "file": "login-zh.png",
+      "bytes": 255465,
+      "sha256": "f7d4102336a2e944fe02612c8332817e6d40f6ff102ddf0521b1bc04e1d657a8",
+      "dimensions": [
+        1080,
+        1920
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 Two independent projects preserve the completed native menu and adapt its presentation into an ordinary Android application. The original Backup repository and live loader are unchanged.
 
 - `menu-ui/`: complete tracked snapshot of Backup commit `aa3411056ccd747787c80078c52165b80020482c`, including SDK, forty static libraries, three themes and sixteen embedded resources. Original development history remains reachable. Read its build and licensing documentation before reuse.
-- `app-ui/`: standalone Java/Android Views app with the reference-based login screen, four-language selection, encrypted local key storage, and preserved developer component gallery. Aurora only; no Anime media or character recordings. Production authentication is not configured.
+- `app-ui/`: standalone Java/Android Views app with reference-based login/dashboard screens, four-language selection, encrypted local key storage, and preserved developer component gallery. Aurora only; no Anime media or character recordings. Production authentication is not configured.
 - `shared/`: measured tokens, motion specification and genuine render evidence.
 - `docs/`: design extraction, portability and future reuse guides.
 

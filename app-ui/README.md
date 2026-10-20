@@ -22,7 +22,7 @@ SDK-only script compiles resources with aapt2, Java with javac, DEX with d8, ali
 
 `MainActivity` owns lifecycle; `Gallery` owns the scrollable component lab and local preferences. `KennyComponents` exposes styled button/panel factories, circular `Check`, `Slider`, and text field. Native semantic controls retain Android keyboard, focus, touch, selection and accessibility behavior; geometry is drawn directly instead of using stock button skins. `Tokens` contains source-derived palette and geometry. `AuroraModel` has no Android dependency; `AuroraBackground` owns reusable mesh buffers and Choreographer scheduling. `TapFeedback` owns one SoundPool stream and a 45 ms original synthesized sample; never a character recording.
 
-The default entry is the reference-based login screen; the original gallery remains accessible using `--ez gallery true` in debuggable builds. Gallery tabs navigate within the component lab. A local dialog demonstrates the same panel composition. Pressed/disabled specimens are labelled; no backend is implied. Add a page after the reference video defines its behavior. Define page state separately from Views; network/business logic should sit outside these presentation classes.
+The default entry is the reference-based login screen; the original gallery remains accessible using `--ez gallery true` in debuggable builds. Gallery tabs navigate within the component lab. A local dialog demonstrates the same panel composition. Pressed/disabled specimens are labelled; no backend is implied. The supplied reference now defines login and dashboard organization. Add future pages only from observed behavior or an explicit specification. Define page state separately from Views; network/business logic should sit outside these presentation classes.
 
 ## Reuse examples
 
@@ -106,3 +106,7 @@ python3 app-ui/tests/phase2_device.py --allow-data-reset --dashboard
 ```
 
 This runs the login tests, all four cards/disabled actions, scrolling, logout/Back, Arabic dashboard recreation, pause/resume, and persistent Reduced Motion/tap settings. Captures come from the installed APK. No target game was installed in CI, so successful launching of the real editions remains a device test. No backend/file operation is claimed verified.
+
+## Installing a verified debug APK
+
+Download the APK artifact from the documented successful Actions run, extract it and install `KennyPvtHax-UI-Suite-debug.apk` (or use `adb install -r <apk>`). Minimum Android version is 8.0/API 26. Debug signing is for testing only. CI runners generate separate debug keystores, so APKs from different runs may have incompatible signatures. If Android rejects an update, retain any data you need before choosing to uninstall the previous test app; uninstall removes this app's encrypted preferences and keys. Do not delete user data automatically. Use an owner-managed signing configuration outside public Git for stable update identity; production signing is not part of this UI checkpoint.

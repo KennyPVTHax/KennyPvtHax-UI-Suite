@@ -8,7 +8,15 @@
     "four locales",
     "Arabic mirrored header",
     "persistent locale",
-    "real pending request/cancel fixture"
+    "real pending request/cancel fixture",
+    "compact 360x640dp layout and scrolling",
+    "explicit debug dashboard preview",
+    "all four edition/package cards and scrolling",
+    "all eight unavailable actions disabled on clean emulator",
+    "logout/back to login",
+    "dashboard Arabic RTL/recreation",
+    "Reduced Motion and tap-sound settings persist",
+    "pause/resume process survives"
   ],
   "development_only_loading_fixture": true,
   "production_auth_verified": false,
