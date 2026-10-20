@@ -27,7 +27,7 @@ def capture(name):
 def start(fixture=None):
  adb('shell','am','force-stop',pkg);args=['shell','am','start','-W','-n',pkg+'/.MainActivity','--ef','preview_time','3']
  if fixture:args+=['--es','auth_fixture',fixture]
- adb(*args);locate('login_key')
+ adb(*args);locate('login_key',True)
 def status(expected):
  for attempt in range(6):
   n=node(dump(),'auth_status')
@@ -84,11 +84,22 @@ if a.dashboard:
  locate('header_logo',False);assert bounds(locate('header_logo',False))[0]>w//2
  for _ in range(4):swipe(False)
  capture('dashboard-ar')
- adb('shell','input','keyevent','3');adb('shell','am','start','-W','-n',pkg+'/.MainActivity');assert adb('shell','pidof',pkg).strip()
+ adb('shell','input','keyevent','3');adb('shell','am','start','-W','-f','0x20000000','-n',pkg+'/.MainActivity');assert adb('shell','pidof',pkg).strip()
  # Back from a local dashboard returns to login; no server logout is claimed.
  adb('shell','input','keyevent','4');locate('login_key',True)
  for _ in range(6):swipe(False)
  tap('language');tap('language_en',False)
- checks+=['explicit debug dashboard preview','all four edition/package cards and scrolling','all eight unavailable actions disabled on clean emulator','logout/back to login','dashboard Arabic RTL/recreation','Reduced Motion and tap-sound settings persist','pause/resume process survives']
+ # A smaller 360x640dp viewport must retain reachable controls and scrollable cards.
+ try:
+  adb('shell','wm','size','720x1280');adb('shell','wm','density','320');w,h=720,1280
+  start()
+  for _ in range(5):swipe(False)
+  capture('login-compact');tap('sign_in');status('Enter a license key.')
+  tap('preview_dashboard');locate('game_global',True)
+  for _ in range(5):swipe(False)
+  capture('dashboard-compact');tap('logout');locate('login_key',True)
+ finally:
+  adb('shell','wm','size','reset');adb('shell','wm','density','reset')
+ checks+=['compact 360x640dp layout and scrolling','explicit debug dashboard preview','all four edition/package cards and scrolling','all eight unavailable actions disabled on clean emulator','logout/back to login','dashboard Arabic RTL/recreation','Reduced Motion and tap-sound settings persist','pause/resume process survives']
 (out/'checks.json').write_text(json.dumps({'runtime':'GitHub Android emulator','checks':checks,'development_only_loading_fixture':True,'production_auth_verified':False,'physical_device_verified':False,'audio_audibility_verified':False},indent=2)+'\n')
 print('PASS login, encrypted persistence, four-language/RTL and controlled loading UI; production authentication unavailable')
