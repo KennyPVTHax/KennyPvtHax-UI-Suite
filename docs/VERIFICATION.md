@@ -17,7 +17,7 @@ Evidence: source-verification.json, menu-host-regressions.json, menu-embedded-ve
 
 ## GitHub and real emulator evidence
 
-The new public repository is `KennyPVTHax/KennyPvtHax-UI-Suite`. Original Backup main remained `aa3411056ccd747787c80078c52165b80020482c`; Anilxkenny remained `72d79ae086f6c7d4eceaccc88fc505ab5d1505c9` during this work.
+The new public repository is `KennyPVTHax/KennyPvtHax-UI-Suite`. Original Backup main was verified at `aa3411056ccd747787c80078c52165b80020482c`. This task made no push to Backup or Anilxkenny. The final read-only Anilxkenny check returned `da8b94a4e982e5816e4cbce460c9ec4f6a9e37e7`; external changes are outside this suite integration, so no claim that its branch stayed at the earlier deployment SHA is made.
 
 Native workflow [39429193438](https://github.com/KennyPVTHax/KennyPvtHax-UI-Suite/actions/runs/39429193438) passed its host suites and ARM64 build from suite source 08cc359. Its downloaded library is 21,083,968 bytes, SHA256 `4902367b2adc1e245a55013b42cd6dbf4ba4bf7c998d41df40c9f556d186fca0`; all 16 payloads were independently checked again after download. Different build metadata/toolchain environment can change the whole-file hash without changing embedded source assets.
 
