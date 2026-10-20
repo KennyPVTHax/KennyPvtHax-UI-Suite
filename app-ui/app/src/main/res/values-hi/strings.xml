@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="brand">KennyPvtHax</string>
+  <string name="identity">क्रिमसन ऑरोरा</string>
+  <string name="local">स्थानीय</string>
+  <string name="choose_language">भाषा</string>
+  <string name="language_button">English  /  中文  /  हिन्दी  /  العربية</string>
+  <string name="welcome">KennyPvtHax में आपका स्वागत है</string>
+  <string name="key_prompt">जारी रखने के लिए अपनी लाइसेंस कुंजी दर्ज करें</string>
+  <string name="key_hint">लाइसेंस कुंजी</string>
+  <string name="save_key">कुंजी सहेजें</string>
+  <string name="forget_key">सहेजी कुंजी भूलें</string>
+  <string name="sign_in">साइन इन करें</string>
+  <string name="cancel">रद्द करें</string>
+  <string name="loading">साइन इन हो रहा है…</string>
+  <string name="key_required">लाइसेंस कुंजी दर्ज करें।</string>
+  <string name="not_configured">प्रमाणीकरण सेवा कॉन्फ़िगर नहीं है। कोई क्रेडेंशियल स्वीकार नहीं हुआ।</string>
+  <string name="auth_failed">साइन इन पूरा नहीं हो सका।</string>
+  <string name="cancelled">अनुरोध रद्द किया गया।</string>
+  <string name="ready">सत्यापित सेवा कॉन्फ़िगर होने तक कुंजी इस डिवाइस पर रहती है।</string>
+  <string name="saved">कुंजी इस डिवाइस पर सुरक्षित सहेजी गई।</string>
+  <string name="forgotten">सहेजी गई कुंजी हटा दी गई।</string>
+  <string name="storage_error">सहेजी कुंजी उपलब्ध नहीं है। उसे हटाकर फिर दर्ज करें।</string>
+  <string name="storage_busy">सुरक्षित संग्रह अपडेट हो रहा है…</string>
+  <string name="backend_notice">यूआई आधार • प्रमाणीकरण एकीकरण शेष</string>
+  <string name="fixture_notice">केवल डीबग • नियंत्रित लंबित प्रमाणीकरण प्रदाता</string>
+  <string name="footer">एक पहचान। चार संस्करण। सरल नियंत्रण।</string>
+  <string name="preview_dashboard">डैशबोर्ड पूर्वावलोकन — स्थानीय विकास</string>
+  <string name="preview_notice">स्थानीय पूर्वावलोकन • कोई प्रमाणित सत्र नहीं</string>
+  <string name="dashboard_title">अपनी अगली यात्रा के लिए तैयार</string>
+  <string name="game_variants">गेम संस्करण</string>
+  <string name="game_help">इंस्टॉल किए संस्करण खोलें। फ़ाइल क्रियाओं के लिए अधिकृत ऐप-स्वामित्व वाला लक्ष्य चाहिए।</string>
+  <string name="installed">इंस्टॉल है</string>
+  <string name="not_installed">इंस्टॉल नहीं है</string>
+  <string name="files">फ़ाइल क्रिया</string>
+  <string name="open_game">गेम खोलें</string>
+  <string name="files_unavailable">फ़ाइल क्रिया उपलब्ध नहीं: अधिकृत लक्ष्य कॉन्फ़िगर नहीं है।</string>
+  <string name="launch_failed">यह संस्करण इस डिवाइस पर नहीं खुल सकता।</string>
+  <string name="logout">लॉग आउट</string>
+  <string name="logged_out">स्थानीय सत्र बंद हुआ।</string>
+  <string name="app_preferences">दिखावट और प्रतिक्रिया</string>
+  <string name="reduced_motion">कम गतिशीलता</string>
+  <string name="ui_sounds">टैप ध्वनि</string>
+  <string name="app_info">KennyPvtHax • Android यूआई सूट</string>
+</resources>

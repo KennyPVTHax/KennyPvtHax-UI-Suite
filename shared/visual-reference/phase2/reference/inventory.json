@@ -1,0 +1,28 @@
+{
+  "video": "VID_20261020_181101_205.mp4",
+  "bytes": 49798458,
+  "sha256": "04ba5c9ed21947989759f9aa20dee46fde3ec66e11034e88ba1d3e89dda58fcf",
+  "duration_seconds": 18.755333,
+  "dimensions": [
+    1080,
+    2400
+  ],
+  "frame_rate": "60000/1001",
+  "crop": [
+    0,
+    110,
+    1080,
+    2300
+  ],
+  "states": {
+    "login-default": 0.3,
+    "language-english": 1.3,
+    "language-chinese": 3.0,
+    "language-hindi": 4.5,
+    "login-arabic": 5.8,
+    "secure-input-blackout": 9.5,
+    "dashboard-initial": 14,
+    "dashboard-scrolled": 16
+  },
+  "notes": "Selected comparative UI frames only. No unmasked key/autofill popup or system notification panel published. Blackout is not established as a loading animation."
+}

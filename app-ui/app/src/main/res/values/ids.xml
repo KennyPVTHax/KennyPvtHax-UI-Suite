@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <item type="id" name="language" />
+  <item type="id" name="language_dialog" />
+  <item type="id" name="language_en" />
+  <item type="id" name="language_zh" />
+  <item type="id" name="language_hi" />
+  <item type="id" name="language_ar" />
+  <item type="id" name="login_key" />
+  <item type="id" name="save_key" />
+  <item type="id" name="forget_key" />
+  <item type="id" name="sign_in" />
+  <item type="id" name="auth_status" />
+  <item type="id" name="auth_loading" />
+  <item type="id" name="auth_cancel" />
+  <item type="id" name="preview_dashboard" />
+  <item type="id" name="login_screen" />
+  <item type="id" name="dashboard_screen" />
+  <item type="id" name="logout" />
+  <item type="id" name="main_brand" />
+  <item type="id" name="header_logo" />
+  <item type="id" name="game_global" />
+  <item type="id" name="game_korea" />
+  <item type="id" name="game_taiwan" />
+  <item type="id" name="game_vietnam" />
+  <item type="id" name="reduced_motion" />
+  <item type="id" name="tap_sounds" />
+</resources>

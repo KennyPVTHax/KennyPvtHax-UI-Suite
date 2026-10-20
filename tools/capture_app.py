@@ -13,7 +13,7 @@ def tap(n):
  x1,y1,x2,y2=map(int,re.findall(r'\d+',n.get('bounds')));adb('shell','input','tap',str((x1+x2)//2),str((y1+y2)//2))
 w,h=map(int,re.findall(r'(\d+)x(\d+)',adb('shell','wm','size').decode())[-1])
 def swipe():adb('shell','input','swipe',str(w//2),str(int(h*.8)),str(w//2),str(int(h*.3)),'400');time.sleep(.3)
-adb('shell','am','force-stop','com.kennypvthax.uisuite');adb('shell','am','start','-W','-n','com.kennypvthax.uisuite/.MainActivity','--ef','preview_time','3');time.sleep(1);capture('app-gallery')
+adb('shell','am','force-stop','com.kennypvthax.uisuite');adb('shell','am','start','-W','-n','com.kennypvthax.uisuite/.MainActivity','--ez','gallery','true','--ef','preview_time','3');time.sleep(1);capture('app-gallery')
 for i in range(5):
  tree=dump()
  if find(tree,'Preview dialog') is not None:break

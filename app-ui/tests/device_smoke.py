@@ -12,7 +12,7 @@ def find(tree,label):
  raise AssertionError('Missing '+label)
 def tap(n):
  x1,y1,x2,y2=map(int,re.findall(r'\d+',n.get('bounds')));adb('shell','input','tap',str((x1+x2)//2),str((y1+y2)//2))
-adb('shell','am','force-stop','com.kennypvthax.uisuite');adb('shell','am','start','-W','-n','com.kennypvthax.uisuite/.MainActivity','--ef','preview_time','3');tree=dump();assert find(tree,'Standard button').get('enabled')=='true';assert find(tree,'Disabled button').get('enabled')=='false';tap(find(tree,'Standard button'))
+adb('shell','am','force-stop','com.kennypvthax.uisuite');adb('shell','am','start','-W','-n','com.kennypvthax.uisuite/.MainActivity','--ez','gallery','true','--ef','preview_time','3');tree=dump();assert find(tree,'Standard button').get('enabled')=='true';assert find(tree,'Disabled button').get('enabled')=='false';tap(find(tree,'Standard button'))
 # Scroll until a real checkbox is visible, then confirm semantic state transition.
 for i in range(4):
  tree=dump()
@@ -28,7 +28,7 @@ assert slider is not None,'Slider missing'
 x1,y1,x2,y2=map(int,re.findall(r'\d+',slider.get('bounds')));assert y2-y1>=48,'Slider collapsed'
 adb('shell','input','tap',str(int(x1+(x2-x1)*.75)),str((y1+y2)//2));tree=dump();assert any(n.get('text','').startswith('Intensity · ') and n.get('text')!='Intensity · 55%' for n in tree.iter('node'))
 # Persistent state across process restart.
-adb('shell','am','force-stop','com.kennypvthax.uisuite');adb('shell','am','start','-W','-n','com.kennypvthax.uisuite/.MainActivity');tree=dump()
+adb('shell','am','force-stop','com.kennypvthax.uisuite');adb('shell','am','start','-W','-n','com.kennypvthax.uisuite/.MainActivity','--ez','gallery','true');tree=dump()
 for i in range(4):
  try:after=find(tree,'Circular checkbox');break
  except AssertionError:adb('shell','input','swipe','400','1400','400','400','450');tree=dump()

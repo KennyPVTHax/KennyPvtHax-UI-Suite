@@ -20,3 +20,7 @@ Copyable Codex instruction:
 > Read this suite's DESIGN_SYSTEM.md and AURORA_ENGINE.md, inspect the actual sources, and reuse its independent Android presentation components. Preserve source-derived colors, alpha, geometry and motion. Do not import game SDK/hooks, Anime media or voices. Inspect my app's supplied video/source before adding pages. Keep existing backend/state behavior, run tests, capture actual screenshots, and report evidence and limitations.
 
 From the suite root run `python3 tools/verify_suite.py`; from app-ui run `python3 build-debug.py --sdk "$ANDROID_HOME"`. Add real workflow-specific tests when actual pages are supplied; do not make static specimens appear to perform remote work.
+
+## Reference-based login template
+
+Use MainActivity/AppShell as a presentation example, AuthController/AuthProvider as a backend boundary and CredentialVault for app-owned encrypted local key persistence. Copying this UI does not supply a production authentication service. Supply the real protocol and test credentials separately; never hardcode accepted keys. Keep actual translations, relative RTL layouts, lifecycle cancellation and the original Aurora. Preserve masked native text editing and avoid saving secrets into View state. Use explicit development-only preview/fixtures when backend-dependent states must be inspected; never expose them as verified production behavior.

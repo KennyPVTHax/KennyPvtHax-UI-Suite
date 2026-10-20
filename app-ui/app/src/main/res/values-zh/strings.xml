@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="brand">KennyPvtHax</string>
+  <string name="identity">绯红极光</string>
+  <string name="local">本地</string>
+  <string name="choose_language">语言</string>
+  <string name="language_button">English  /  中文  /  हिन्दी  /  العربية</string>
+  <string name="welcome">欢迎使用 KennyPvtHax</string>
+  <string name="key_prompt">请输入许可证密钥以继续</string>
+  <string name="key_hint">许可证密钥</string>
+  <string name="save_key">保存密钥</string>
+  <string name="forget_key">删除已保存的密钥</string>
+  <string name="sign_in">登录</string>
+  <string name="cancel">取消</string>
+  <string name="loading">正在登录…</string>
+  <string name="key_required">请输入许可证密钥。</string>
+  <string name="not_configured">尚未配置身份验证服务。未接受任何凭据。</string>
+  <string name="auth_failed">无法完成登录。</string>
+  <string name="cancelled">请求已取消。</string>
+  <string name="ready">配置经验证的服务之前，密钥仅保留在此设备上。</string>
+  <string name="saved">密钥已安全保存在此设备上。</string>
+  <string name="forgotten">已删除保存的密钥。</string>
+  <string name="storage_error">无法读取保存的密钥。请删除后重新输入。</string>
+  <string name="storage_busy">正在更新安全存储…</string>
+  <string name="backend_notice">界面基础 • 等待身份验证集成</string>
+  <string name="fixture_notice">仅调试 • 可控的待处理身份验证提供程序</string>
+  <string name="footer">一个标识，四个版本，清晰操控。</string>
+  <string name="preview_dashboard">预览控制面板 — 本地开发</string>
+  <string name="preview_notice">本地预览 • 无已验证的会话</string>
+  <string name="dashboard_title">准备好开启下一段旅程</string>
+  <string name="game_variants">游戏版本</string>
+  <string name="game_help">启动已安装版本。文件操作需要已授权的应用自有目标。</string>
+  <string name="installed">已安装</string>
+  <string name="not_installed">未安装</string>
+  <string name="files">文件操作</string>
+  <string name="open_game">启动游戏</string>
+  <string name="files_unavailable">文件操作不可用：未配置已授权目标。</string>
+  <string name="launch_failed">无法在此设备启动此版本。</string>
+  <string name="logout">退出登录</string>
+  <string name="logged_out">本地会话已关闭。</string>
+  <string name="app_preferences">外观与反馈</string>
+  <string name="reduced_motion">减少动态效果</string>
+  <string name="ui_sounds">轻触音效</string>
+  <string name="app_info">KennyPvtHax • Android 界面套件</string>
+</resources>

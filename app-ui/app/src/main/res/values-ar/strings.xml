@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="brand">KennyPvtHax</string>
+  <string name="identity">الشفق القرمزي</string>
+  <string name="local">محلي</string>
+  <string name="choose_language">اللغة</string>
+  <string name="language_button">English  /  中文  /  हिन्दी  /  العربية</string>
+  <string name="welcome">مرحبًا بك في KennyPvtHax</string>
+  <string name="key_prompt">أدخل مفتاح الترخيص للمتابعة</string>
+  <string name="key_hint">مفتاح الترخيص</string>
+  <string name="save_key">حفظ المفتاح</string>
+  <string name="forget_key">نسيان المفتاح المحفوظ</string>
+  <string name="sign_in">تسجيل الدخول</string>
+  <string name="cancel">إلغاء</string>
+  <string name="loading">جارٍ تسجيل الدخول…</string>
+  <string name="key_required">أدخل مفتاح الترخيص.</string>
+  <string name="not_configured">خدمة المصادقة غير مهيأة. لم يتم قبول أي بيانات دخول.</string>
+  <string name="auth_failed">تعذر إكمال تسجيل الدخول.</string>
+  <string name="cancelled">تم إلغاء الطلب.</string>
+  <string name="ready">يبقى مفتاحك على هذا الجهاز حتى تتم تهيئة خدمة موثوقة.</string>
+  <string name="saved">تم حفظ المفتاح بأمان على هذا الجهاز.</string>
+  <string name="forgotten">تم حذف المفتاح المحفوظ.</string>
+  <string name="storage_error">المفتاح المحفوظ غير متاح. احذفه وأدخله مجددًا.</string>
+  <string name="storage_busy">جارٍ تحديث التخزين الآمن…</string>
+  <string name="backend_notice">واجهة التطبيق • تكامل المصادقة قيد الانتظار</string>
+  <string name="fixture_notice">للتطوير فقط • موفر مصادقة معلق للاختبار</string>
+  <string name="footer">هوية واحدة. أربعة إصدارات. تحكم واضح.</string>
+  <string name="preview_dashboard">معاينة لوحة التحكم — تطوير محلي</string>
+  <string name="preview_notice">معاينة محلية • لا توجد جلسة مصادقة</string>
+  <string name="dashboard_title">جاهز لرحلتك القادمة</string>
+  <string name="game_variants">إصدارات اللعبة</string>
+  <string name="game_help">شغّل الإصدارات المثبتة. تتطلب إجراءات الملفات هدفًا مصرحًا يملكه التطبيق.</string>
+  <string name="installed">مثبت</string>
+  <string name="not_installed">غير مثبت</string>
+  <string name="files">إجراء الملفات</string>
+  <string name="open_game">تشغيل اللعبة</string>
+  <string name="files_unavailable">إجراء الملفات غير متاح: لم تتم تهيئة هدف مصرح به.</string>
+  <string name="launch_failed">لا يمكن تشغيل هذا الإصدار على هذا الجهاز.</string>
+  <string name="logout">تسجيل الخروج</string>
+  <string name="logged_out">تم إغلاق الجلسة المحلية.</string>
+  <string name="app_preferences">المظهر والاستجابة</string>
+  <string name="reduced_motion">تقليل الحركة</string>
+  <string name="ui_sounds">أصوات النقر</string>
+  <string name="app_info">KennyPvtHax • حزمة واجهات Android</string>
+</resources>

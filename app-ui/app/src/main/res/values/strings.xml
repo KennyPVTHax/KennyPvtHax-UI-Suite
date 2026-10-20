@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="brand">KennyPvtHax</string>
+  <string name="identity">CRIMSON AURORA</string>
+  <string name="local">Local</string>
+  <string name="choose_language">Language</string>
+  <string name="language_button">English  /  中文  /  हिन्दी  /  العربية</string>
+  <string name="welcome">Welcome to KennyPvtHax</string>
+  <string name="key_prompt">Enter your license key to continue</string>
+  <string name="key_hint">License key</string>
+  <string name="save_key">Save key</string>
+  <string name="forget_key">Forget saved key</string>
+  <string name="sign_in">Sign in</string>
+  <string name="cancel">Cancel</string>
+  <string name="loading">Signing in…</string>
+  <string name="key_required">Enter a license key.</string>
+  <string name="not_configured">Authentication service is not configured. No credentials were accepted.</string>
+  <string name="auth_failed">Sign-in could not be completed.</string>
+  <string name="cancelled">Request cancelled.</string>
+  <string name="ready">Your key stays on this device unless a verified service is configured.</string>
+  <string name="saved">Key saved securely on this device.</string>
+  <string name="forgotten">Saved key removed.</string>
+  <string name="storage_error">Saved key is unavailable. Forget it and enter it again.</string>
+  <string name="storage_busy">Updating secure storage…</string>
+  <string name="backend_notice">UI foundation • authentication integration pending</string>
+  <string name="fixture_notice">DEBUG ONLY • controlled pending authentication provider</string>
+  <string name="footer">One identity. Four editions. Clear controls.</string>
+  <string name="preview_dashboard">Preview dashboard — local development</string>
+  <string name="preview_notice">LOCAL PREVIEW • no authenticated session</string>
+  <string name="dashboard_title">Ready for your next journey</string>
+  <string name="game_variants">Game editions</string>
+  <string name="game_help">Launch installed editions. File actions need an authorized app-owned target.</string>
+  <string name="installed">Installed</string>
+  <string name="not_installed">Not installed</string>
+  <string name="files">File action</string>
+  <string name="open_game">Launch game</string>
+  <string name="files_unavailable">File action unavailable: no authorized target is configured.</string>
+  <string name="launch_failed">This edition cannot be launched on this device.</string>
+  <string name="logout">Log out</string>
+  <string name="logged_out">Local session closed.</string>
+  <string name="app_preferences">Appearance &amp; feedback</string>
+  <string name="reduced_motion">Reduced motion</string>
+  <string name="ui_sounds">Tap sounds</string>
+  <string name="app_info">KennyPvtHax • Android UI Suite</string>
+</resources>

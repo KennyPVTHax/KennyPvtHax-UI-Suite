@@ -13,3 +13,7 @@
 11. Profile CPU/GPU/frame allocations on Android; do not infer FPS from desktop models.
 
 Actual implementations: `app-ui/app/src/main/java/com/kennypvthax/uisuite/`, original references under `menu-ui/jni/`. Build and capture commands are in app and root READMEs. Full-screen adaptation and remaining parity gaps are listed in DESIGN_SYSTEM.md. Future pages require the owner's video/source and verified functionality; do not invent backend behavior.
+
+## Applying a real screen reference
+
+Use docs/REFERENCE_VIDEO_ANALYSIS.md and its timestamped, cropped frames. Recreate observed organization first, then reuse KennyComponents, BrandMark, LicenseField and the shared Aurora instance. Keep localization in Android resource bundles and use relative layout parameters. Never recover authentication or file-management behavior from button labels: wire the UI to explicit interfaces, with honest unavailable states until real source/protocol evidence exists. Capture actual APK states with app-ui/tests/phase2_device.py; clearly label its debug-only pending-provider loading frame. Preserve the gallery as a separate debug regression route.
