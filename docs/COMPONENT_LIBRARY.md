@@ -13,3 +13,5 @@
 | Tap feedback | Native audio is not imported | TapFeedback, single cached synthesized sample |
 
 Public component factory example is in app-ui/README. Android defaults provide semantic input behavior, not stock button visuals. Original menu uses no photographic button texture. Android switch geometry, press transition timing and full-screen spacing remain documented adaptations. Do not mislabel the gallery as a completed application workflow.
+
+Actual emulator inspection found and corrected a collapsed slider measurement and misaligned checkbox label. The custom SeekBar now explicitly measures48dp, and checks center text vertically. Check discs cache the original #241B21→#0C0B0F inactive and #D72A45→#A40F29 checked gradients when their size changes; transitions crossfade those cached materials without allocating shaders every frame.
