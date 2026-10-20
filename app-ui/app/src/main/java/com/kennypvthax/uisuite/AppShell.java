@@ -75,7 +75,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
     private void space(LinearLayout parent,int amount){View v=new View(getContext());parent.addView(v,new LinearLayout.LayoutParams(1,dp(amount)));}
     private TextView text(LinearLayout parent,int id,int size,int color){
         TextView view=new TextView(getContext());view.setText(id);view.setTextSize(size);view.setTextColor(color);
-        view.setTextDirection(TEXT_DIRECTION_LOCALE);view.setPadding(0,dp(3),0,dp(5));
+        view.setTextDirection(TEXT_DIRECTION_FIRST_STRONG);view.setPadding(0,dp(3),0,dp(5));
         parent.addView(view,new LinearLayout.LayoutParams(-1,-2));return view;
     }
     private Button button(int text,int id,Runnable action){

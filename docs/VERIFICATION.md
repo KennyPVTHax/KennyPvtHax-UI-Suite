@@ -11,7 +11,7 @@ Completed locally:
 - Android app compiles through javac/d8/aapt2 and passes APKv2/v3 signature checks. Build script uses official AndroidSDK35/build-tools35.0.0/JDK17.
 - `shared/visual-reference/menu-aurora.png` is actual native menu ImGui draw data, CPU-rasterized with its real atlas. It is not an Android screenshot. Its host harness has no supplied logo texture, so original K fallback can appear in that reference.
 
-Current evidence: Android screenshot capture and app interaction checks passed in the accelerated GitHub emulator, detailed below. No physical-device appearance, GPU performance, speaker playback, TalkBack navigation or final visual parity is asserted. The app contains documented geometry/rasterization adaptations; numeric parity is not pixel parity. Application pages await the owner's reference video.
+Current evidence: Android screenshot capture and app interaction checks passed in the accelerated GitHub emulator, detailed below. No physical-device appearance, GPU performance, speaker playback, TalkBack navigation or final visual parity is asserted. The app contains documented geometry/rasterization adaptations; numeric parity is not pixel parity. The original foundation preceded the reference video; Phase 2 now implements its observed pages, tracked in REFERENCE_VIDEO_ANALYSIS.md.
 
 Evidence: source-verification.json, menu-host-regressions.json, menu-embedded-verification.json. Logs/build intermediates are excluded from public source. Original Backup repository and live Anilxkenny manifest are not modified by suite work.
 

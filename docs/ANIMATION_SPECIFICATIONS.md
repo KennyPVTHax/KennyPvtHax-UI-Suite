@@ -12,4 +12,4 @@ Authority: KennyMotion.h, ClaudeTheme.h, KennyControls.h and KennyAurora.h.
 | Touch illumination rise |7|428ms|
 | Illumination release |2.8|1070ms|
 
-Interpolation a+(b−a)(1−exp(−rate×dt)); dt≤.1. App checkbox follows rate22; Android buttons use rate18 emphasis and circular checks use rate22. Lab navigation updates locally and is not claimed a faithful moving underline port. Aurora model is fixed120 Hz; reduced motion stops ambient simulation. No application-specific transitions are invented before the video. See Aurora guide for geometry and timing formulas.
+Interpolation a+(b−a)(1−exp(−rate×dt)); dt≤.1. App checkbox follows rate22; Android buttons use rate18 emphasis and circular checks use rate22. Lab navigation updates locally and is not claimed a faithful moving underline port. Aurora model is fixed120 Hz; reduced motion stops ambient simulation. Reference-based application loading now follows actual authentication controller state; the video blackout is not copied as an invented transition. See Aurora guide for geometry and timing formulas.
