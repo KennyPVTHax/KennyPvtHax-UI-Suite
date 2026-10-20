@@ -1,0 +1,11 @@
+<resources>
+    <!-- Window/input-handle styling only; visible controls keep custom Kenny paint. -->
+    <style name="KennyAppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:colorAccent">#C1122B</item>
+        <item name="android:windowBackground">#060609</item>
+        <item name="android:statusBarColor">#060609</item>
+        <item name="android:navigationBarColor">#060609</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

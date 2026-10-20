@@ -100,7 +100,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         LinearLayout hero=KennyComponents.panel(getContext());hero.setId(R.id.main_brand);hero.setGravity(Gravity.CENTER);
         BrandMark logo=new BrandMark(getContext());hero.addView(logo,new LinearLayout.LayoutParams(dp(88),dp(88)));
         TextView name=text(hero,R.string.brand,28,Tokens.TEXT);name.setGravity(Gravity.CENTER);name.setTextDirection(TEXT_DIRECTION_LTR);
-        TextView caption=text(hero,R.string.identity,11,Tokens.SELECTED);caption.setGravity(Gravity.CENTER);caption.setLetterSpacing(.16f);
+        TextView caption=text(hero,R.string.identity,11,Tokens.SELECTED);caption.setGravity(Gravity.CENTER);caption.setLetterSpacing("en".equals(LocaleSettings.current(activity))?.16f:0);
         content.addView(hero,new LinearLayout.LayoutParams(-1,-2));space(content,18);
     }
     private void showLogin(){

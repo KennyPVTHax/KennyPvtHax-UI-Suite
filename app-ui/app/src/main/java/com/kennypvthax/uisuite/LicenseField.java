@@ -15,7 +15,7 @@ final class LicenseField extends EditText {
     private float emphasis;
     LicenseField(Context c) {
         super(c);
-        setTextSize(16); setTextColor(Tokens.TEXT); setHintTextColor(Tokens.SECONDARY);
+        setTextSize(16); setTextColor(Tokens.TEXT); setHighlightColor(0x59ff5664); setHintTextColor(Tokens.SECONDARY);
         setHint(R.string.key_hint); setContentDescription(c.getString(R.string.key_hint));
         setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
         setSingleLine(true); setSaveEnabled(false);
