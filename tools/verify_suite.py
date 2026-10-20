@@ -20,6 +20,11 @@ assert len(list((r/'menu-ui/jni').rglob('*.a')))==40
 s=(r/'menu-ui/jni/ClaudeTheme.h').read_text();t=json.loads((r/'shared/design-tokens/tokens.json').read_text())
 for name,value in t['colors'].items():assert re.search(r'\b'+name+r'\s*= Hex\(0x'+value[1:],s,re.I),name
 app=r/'app-ui/app/src/main'
+java_tokens=(app/'java/com/kennypvthax/uisuite/Tokens.java').read_text()
+values={k:int(v,16)&0xffffff for k,v in re.findall(r'\b([A-Z_]+)=(0x[0-9a-f]+)',java_tokens)}
+for java,native in {'BG':'bg','SURFACE':'surface','ELEVATED':'surfaceElev','SUBTLE':'surfaceSubtle','OUTLINE':'outline','TEXT':'textPrimary','SECONDARY':'textSecondary','ACCENT':'accent','FIRE':'accentPressed','GLOW':'glow','SELECTED':'selectedInk'}.items():
+ assert values[java]==int(t['colors'][native][1:],16),java
+
 assert not (app/'assets/menu.ttf').exists()
 assert not list(app.rglob('*.so')) and not list(app.rglob('*.mp4')) and not list(app.rglob('*.ogg'))
 assert len(list((app/'res/raw').glob('*')))==1

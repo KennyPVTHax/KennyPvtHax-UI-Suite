@@ -116,3 +116,5 @@ Diagnostics: [KENNY_ANDROID_CRASH_DIAGNOSTICS.md](KENNY_ANDROID_CRASH_DIAGNOSTIC
 Progress: [CODEX_PROGRESS.md](CODEX_PROGRESS.md).
 Existing third-party notices remain intact; no blanket rights over character IP
 or other third-party content are asserted.
+
+Suite reference capture (from suite root, after running regressions with `--label suite-relocation`): `python3 tools/capture_menu_reference.py`. It calls the actual existing production UI capture harness, freezes Aurora at 3 seconds, CPU-rasterizes native ImGui triangles, and writes shared/visual-reference/menu-aurora.png. Its missing host logo texture deliberately exercises the existing K fallback; it is not evidence of a production logo regression.

@@ -1,0 +1,12 @@
+{
+  "runtime": "authorized connected Android emulator/device",
+  "checks": [
+    "button enabled",
+    "button disabled",
+    "real checkbox toggle",
+    "visible slider touch input",
+    "preference persistence across force-stop"
+  ],
+  "audio_audibility_verified": false,
+  "physical_device_verified": false
+}

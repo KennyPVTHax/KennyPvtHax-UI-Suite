@@ -20,7 +20,7 @@ SDK-only script compiles resources with aapt2, Java with javac, DEX with d8, ali
 
 ## Architecture
 
-`MainActivity` owns lifecycle; `Gallery` owns the scrollable component lab and local preferences. `KennyComponents` exposes styled button/panel factories, circular `Check`, `Slider`, and text field. Native semantic controls retain Android keyboard, focus, touch, selection and accessibility behavior; geometry is drawn directly instead of using stock button skins. `Tokens` contains source-derived palette and geometry. `AuroraModel` has no Android dependency; `AuroraBackground` owns reusable mesh buffers and Choreographer scheduling. `TapFeedback` owns one SoundPool stream and a 45ms original synthesized sample; never a character recording.
+`MainActivity` owns lifecycle; `Gallery` owns the scrollable component lab and local preferences. `KennyComponents` exposes styled button/panel factories, circular `Check`, `Slider`, and text field. Native semantic controls retain Android keyboard, focus, touch, selection and accessibility behavior; geometry is drawn directly instead of using stock button skins. `Tokens` contains source-derived palette and geometry. `AuroraModel` has no Android dependency; `AuroraBackground` owns reusable mesh buffers and Choreographer scheduling. `TapFeedback` owns one SoundPool stream and a 45 ms original synthesized sample; never a character recording.
 
 Gallery tabs navigate within the component lab, not invented application screens. A local dialog demonstrates the same panel composition. Pressed/disabled specimens are labelled; no backend is implied. Add a page after the reference video defines its behavior. Define page state separately from Views; network/business logic should sit outside these presentation classes.
 
@@ -32,15 +32,15 @@ LinearLayout card = KennyComponents.panel(context);
 card.addView(save);
 ```
 
-Create a section in `Gallery` or a future screen with a panel and ordinary layout parameters; keep controls at least48dp high. Add navigation by selecting a local screen state and a corresponding View; never attach business side effects to `onDraw`. New animations should use `AuroraModel.approach`, finite bounded delta and reduced-motion snapping. Persist preferences through app-private SharedPreferences with safe defaults. Current persisted values: tap sounds, reduced motion, checkbox/toggle specimens and slider intensity. Intensity is a gallery slider specimen, not an Aurora brightness preference.
+Create a section in `Gallery` or a future screen with a panel and ordinary layout parameters; keep controls at least48 dp high. Add navigation by selecting a local screen state and a corresponding View; never attach business side effects to `onDraw`. New animations should use `AuroraModel.approach`, finite bounded delta and reduced-motion snapping. Persist preferences through app-private SharedPreferences with safe defaults. Current persisted values: tap sounds, reduced motion, checkbox/toggle specimens and slider intensity. Intensity is a gallery slider specimen, not an Aurora brightness preference.
 
 ## Rendering and portability
 
-Aurora directly adapts unsigned seeded noise, curtain parameters, spring/damping/speed cap and fixed120Hz stepping from `KennyAurora.h`. It uses three97×19 vertex grids, cached triangle arrays and 40 stars. Android Canvas mesh blending, full-screen portrait composition, font hinting, platform switch geometry and48dp hit targets are documented differences. No claim of pixel-perfect matching or device FPS.
+Aurora directly adapts unsigned seeded noise, curtain parameters, spring/damping/speed cap and fixed120 Hz stepping from `KennyAurora.h`. It uses three97×19 vertex grids, cached triangle arrays and 40 stars. Android Canvas mesh blending, full-screen portrait composition, font hinting, platform switch geometry and48 dp hit targets are documented differences. No claim of pixel-perfect matching or device FPS.
 
 The recovered menu font is Microsoft Segoe UI; its restrictive embedding terms do not establish standalone-app redistribution rights. The app explicitly uses Android installed sans-serif instead; this is a known typography mismatch. Text sizes adapt to sp and Android font-scale. Window insets and scrolling preserve access on small screens; fields use the system keyboard. Semantic button/checkbox/seekbar classes retain accessibility actions. Custom switch styling is an Android adaptation, not an exact native component (the menu uses circular checkboxes).
 
-`onPause` removes frame callbacks; resume clears previous frame time to avoid hidden-time catch-up. Reduced motion stops Aurora updates while retaining static ribbons/stars. Tap sample loads once, bounded single stream,65ms throttle, sound setting persisted; actual speaker output requires device testing. All model arrays and renderer buffers are fixed-capacity. Canvas/framework internal allocations are not claimed zero.
+`onPause` removes frame callbacks; resume clears previous frame time to avoid hidden-time catch-up. Reduced motion stops Aurora updates while retaining static ribbons/stars. Tap sample loads once, bounded single stream,65 ms throttle, sound setting persisted; actual speaker output requires device testing. All model arrays and renderer buffers are fixed-capacity. Canvas/framework internal allocations are not claimed zero.
 
 ## Tests and debugging
 
@@ -52,3 +52,5 @@ python3 tools/capture_app.py --adb "$ANDROID_HOME/platform-tools/adb"
 ```
 
 Tests compare actual C++ and Java numeric outputs, deterministic stars, bounds, touch/release, frame-rate behavior, NaN handling and reduced motion. APK compilation/signature checks differ from emulator UI tests and physical-device performance/audio tests. Use `adb logcat -s AndroidRuntime` for Java crashes. Screenshot capture runs the actual installed APK; never a mockup. See `shared/visual-reference` for evidence. No application pages/backend are implemented until the owner supplies the video/source.
+
+Deterministic rendering mode for visual review: launch the gallery with `adb shell am start -n com.kennypvthax.uisuite/.MainActivity --ef preview_time 3` after force-stopping the process. This freezes presentation time only; it is a component-lab capture feature, not an application page or configuration action. `tools/capture_app.py` uses this mode and saves real gallery, controls, dialog and reduced-motion/audio-settings captures.

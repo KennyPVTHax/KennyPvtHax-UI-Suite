@@ -1,0 +1,56 @@
+{
+  "baseline_menu_source": "aa3411056ccd747787c80078c52165b80020482c",
+  "standalone_app_build": {
+    "source_commit": "acb6044ceebfb21f64f47dd6ff4ef506e8d07f30",
+    "actions_run": "https://github.com/KennyPVTHax/KennyPvtHax-UI-Suite/actions/runs/39431048298",
+    "artifact_id": 12267867677,
+    "apk_bytes": 49616,
+    "apk_sha256": "689994feb644c6fb7e68467947ad0aac40ba4eb7dbabe929d900459fb3904ff8",
+    "emulator_runtime": "Android 30 x86_64",
+    "checks": [
+      "compile",
+      "signature",
+      "install",
+      "launch",
+      "button semantics",
+      "checkbox interaction",
+      "slider input",
+      "preference persistence",
+      "four actual screenshots"
+    ],
+    "audio_audibility_verified": false
+  },
+  "menu_build": {
+    "source_commit": "08cc359195cce3853997d2bd32947b504537ed70",
+    "actions_run": "https://github.com/KennyPVTHax/KennyPvtHax-UI-Suite/actions/runs/39429193438",
+    "artifact_id": 12267975543,
+    "ndk": "25.2.9519653",
+    "abi": "arm64-v8a",
+    "library_bytes": 21083968,
+    "library_sha256": "4902367b2adc1e245a55013b42cd6dbf4ba4bf7c998d41df40c9f556d186fca0",
+    "embedded_resources_verified": 16,
+    "host_suites_passed": 16,
+    "original_bindings_verified": 37
+  },
+  "app_source_sha256": {
+    "app-ui/app/src/main/AndroidManifest.xml": "fbf4f700fe69f27be79b6b4075045036ffc627958abaef0deabbbc4a1862a4a0",
+    "app-ui/app/src/main/java/com/kennypvthax/uisuite/AuroraBackground.java": "57ecd64fa89dfa3d0756e8e3cf6656348c92273c0df8a6ced297b86e8fa4f7f8",
+    "app-ui/app/src/main/java/com/kennypvthax/uisuite/AuroraModel.java": "6ca5c65a8fb046b0fa673bef62c445f434b9396da44353ce83818d1f3ec88487",
+    "app-ui/app/src/main/java/com/kennypvthax/uisuite/Gallery.java": "e474e4a0fe226c53beac202efebdd906f92e2e9f493566bff64c4d2c69f7ebd9",
+    "app-ui/app/src/main/java/com/kennypvthax/uisuite/KennyComponents.java": "5f7b2d34a50f7cbeba9735cf6a623672d0b59b144423b163949b98e66fed4bc8",
+    "app-ui/app/src/main/java/com/kennypvthax/uisuite/MainActivity.java": "a808c6de84c41372571ab9c206802c2c03c2ef641f4a89c8a63d1f771aa12eff",
+    "app-ui/app/src/main/java/com/kennypvthax/uisuite/TapFeedback.java": "ee88c01cc74fdaee142830c0669a7f68a1c7368577a396396b602c8557205fe0",
+    "app-ui/app/src/main/java/com/kennypvthax/uisuite/Tokens.java": "78538532ca0cda7742615611bac5ed1d0df046aae8f180e0f999628284ac0fdd",
+    "app-ui/app/src/main/res/raw/tap.wav": "d2e8447cc9f813e5ae1c95ed6f8967561dcb8dd83de3ed5db95d3206f42558a2",
+    "app-ui/build-debug.py": "6d1864c32db2c170f41c710fbb571a867fbd466b27571d55024eb4a9c03c6c41"
+  },
+  "physical_device_verified": false,
+  "known_visual_differences": [
+    "Android installed sans-serif replaces restricted Segoe UI",
+    "portrait full-screen spacing and touch target adaptation",
+    "Android switch geometry",
+    "Canvas clipping/rasterization",
+    "gallery navigation underline is a local selection adaptation, not exact native shared-indicator parity"
+  ],
+  "original_repositories_modified": false
+}

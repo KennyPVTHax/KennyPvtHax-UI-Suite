@@ -22,4 +22,4 @@ Reduced motion freezes time/particles and clears touch response; background call
 
 For Compose, maintain the same model in remember, draw cached mesh-equivalent paths on Canvas and drive with lifecycle-aware frame time. This is guidance only: no Compose implementation exists here. For C++ reuse original presentation headers without the game integration. For another Canvas system retain unsigned hash semantics, double time, exact fixed stepping and normalized aspect-aware attraction.
 
-Run `python3 tools/verify_suite.py` from root to compare seeded homes and all291 curtain samples against C++. Use actual device screenshots before claiming output parity.
+Run `python3 tools/verify_suite.py` from root to compare seeded homes and all 291 curtain samples against C++. Use actual device screenshots before claiming output parity.

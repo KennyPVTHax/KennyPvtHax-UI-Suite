@@ -43,3 +43,5 @@ The exact menu font bytes are `jni/ANOY/CustomFont.h`, baked32px for the menu wi
 ## Adaptations requiring visual review
 
 Android Canvas meshes blend/rasterize differently from ImGui triangles. Android full-screen portrait composition cannot preserve the landscape floating menu's exact spatial ratios. Touch targets increase to48dp. Native hover has pressed/focus Android equivalents; buttons use rate18 pressed/focus emphasis with Android semantic input handling. The platform switch is a themed semantic adaptation; native original uses circular checks. This foundation is not asserted pixel-perfect. Evidence must separate numeric parity, host renders, emulator captures and real-device captures.
+
+Token-versus-call-site distinction: RadiusBtn10 is a declared theme token; the original SecondaryButton helper inherits RadiusInput8 unless a caller overrides rounding. The app's10dp button radius follows the declared button token and is an explicit adaptation. Native selected-indicator movement and original full typography are not yet exact Android equivalents. The verification tool checks both token JSON and Java RGB constants against the authoritative source.

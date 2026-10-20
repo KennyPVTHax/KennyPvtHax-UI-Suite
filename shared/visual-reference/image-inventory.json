@@ -1,0 +1,50 @@
+{
+  "menu-aurora.png": {
+    "bytes": 260175,
+    "dimensions": [
+      1920,
+      872
+    ],
+    "sha256": "9ca2f8c2bc396a9c676e6fad7705e17fc213bd7ae01b128b35e19bd32efe181c"
+  },
+  "app-gallery.png": {
+    "bytes": 208966,
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "sha256": "84f15057a08a9e23bf0335189053f76a8260d93a875ab2db80dde27b10e57ce1"
+  },
+  "app-controls.png": {
+    "bytes": 204410,
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "sha256": "c994b51768d6a7b8fe7ab4c5151860dfcae349ca18e343f9c157fc338b996453"
+  },
+  "app-dialog.png": {
+    "bytes": 138574,
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "sha256": "ea3c8efd698f63e2026588570382781b0fb41d2067f195c96fc86b03469de4c7"
+  },
+  "app-motion.png": {
+    "bytes": 247179,
+    "dimensions": [
+      1080,
+      1920
+    ],
+    "sha256": "1f676f1d201373c3b9cf6b9c9a474445a44bded2112a3f58fc5eb31c9c35b63e"
+  },
+  "menu-app-comparison.png": {
+    "bytes": 619237,
+    "dimensions": [
+      2304,
+      3032
+    ],
+    "sha256": "3f26d638e7917414f34c45780ed77a827be172d23d0923e9bc48cb5b7199efc0"
+  }
+}
