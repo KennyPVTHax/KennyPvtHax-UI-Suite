@@ -36,7 +36,7 @@ def status(expected):
   time.sleep(.2)
  raise AssertionError('Unexpected auth/status state; no credential content logged')
 def enter_key():
- tap('login_key');adb('shell','input','text','local-ui-fixture');capture('login-focused');adb('shell','input','keyevent','4')
+ tap('login_key');adb('shell','input','text','local-ui-fixture');assert node(dump(),'login_key').get('password')=='true';capture('login-focused');adb('shell','input','keyevent','4')
 adb('shell','pm','clear',pkg);start();capture('login-default')
 enter_key();tap('save_key');status('Key saved securely on this device.')
 prefs=adb('exec-out','run-as',pkg,'cat','shared_prefs/kenny-credentials.xml');assert b'local-ui-fixture' not in prefs and b'ciphertext' in prefs and b'iv' in prefs
@@ -55,5 +55,40 @@ tap('language');tap('language_en',False);start();assert any(n.get('text')=='Welc
 start('pending');tap('login_key');adb('shell','input','text','local-ui-fixture');adb('shell','input','keyevent','4');tap('sign_in');status('Signing in…');capture('login-loading');tap('auth_cancel');status('Request cancelled.')
 # Gallery uses its original, separately tested entry point; do not remove it.
 checks=['masked input/focus','AES-GCM save and process-death restore','forget and empty restore','unconfigured authentication error','four locales','Arabic mirrored header','persistent locale','real pending request/cancel fixture']
+if a.dashboard:
+ start();tap('preview_dashboard');locate('header_logo',False)
+ for _ in range(4):swipe(False)
+ capture('dashboard-initial')
+ expected={'com.tencent.ig','com.pubg.krmobile','com.rekoo.pubgm','com.vng.pubgmobile'};seen=set();disabled=set()
+ for _ in range(10):
+  tree=dump()
+  seen.update(n.get('text') for n in tree.iter('node') if n.get('text') in expected)
+  for kind in ['global','korea','taiwan','vietnam']:
+   for action in ['launch','files']:
+    n=node(tree,action+'_'+kind)
+    if n is not None:
+     assert n.get('enabled')=='false','Unavailable action must not pretend to function'
+     disabled.add(action+'_'+kind)
+  if node(tree,'logout') is not None:break
+  swipe()
+ assert seen==expected and len(disabled)==8,'Missing edition/card action while scrolling'
+ capture('dashboard-scrolled');tap('app_preferences');locate('preferences_dialog',False)
+ tap('reduced_motion',False);tap('tap_sounds',False);capture('dashboard-preferences');adb('shell','input','keyevent','4')
+ prefs=adb('exec-out','run-as',pkg,'cat','shared_prefs/kenny-ui-suite.xml')
+ assert b'name="reduced" value="true"' in prefs and b'name="sounds" value="false"' in prefs
+ tap('logout');locate('login_key');start();tap('app_preferences');assert node(dump(),'reduced_motion').get('checked')=='true' and node(dump(),'tap_sounds').get('checked')=='false'
+ # Restore original preferences; inspect actual state, not whether sound was audible.
+ tap('reduced_motion',False);tap('tap_sounds',False);adb('shell','input','keyevent','4')
+ for _ in range(6):swipe(False)
+ tap('preview_dashboard');tap('language');tap('language_ar',False)
+ locate('header_logo',False);assert bounds(locate('header_logo',False))[0]>w//2
+ for _ in range(4):swipe(False)
+ capture('dashboard-ar')
+ adb('shell','input','keyevent','3');adb('shell','am','start','-W','-n',pkg+'/.MainActivity');assert adb('shell','pidof',pkg).strip()
+ # Back from a local dashboard returns to login; no server logout is claimed.
+ adb('shell','input','keyevent','4');locate('login_key',True)
+ for _ in range(6):swipe(False)
+ tap('language');tap('language_en',False)
+ checks+=['explicit debug dashboard preview','all four edition/package cards and scrolling','all eight unavailable actions disabled on clean emulator','logout/back to login','dashboard Arabic RTL/recreation','Reduced Motion and tap-sound settings persist','pause/resume process survives']
 (out/'checks.json').write_text(json.dumps({'runtime':'GitHub Android emulator','checks':checks,'development_only_loading_fixture':True,'production_auth_verified':False,'physical_device_verified':False,'audio_audibility_verified':False},indent=2)+'\n')
 print('PASS login, encrypted persistence, four-language/RTL and controlled loading UI; production authentication unavailable')

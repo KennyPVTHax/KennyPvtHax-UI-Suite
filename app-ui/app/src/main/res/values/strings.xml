@@ -42,4 +42,8 @@
   <string name="reduced_motion">Reduced motion</string>
   <string name="ui_sounds">Tap sounds</string>
   <string name="app_info">KennyPvtHax • Android UI Suite</string>
+  <string name="checking_edition">Checking installation…</string>
+  <string name="edition_unknown">Installation status unavailable</string>
+  <string name="dashboard_session">Dashboard • connected session</string>
+  <string name="back_to_login">Return to sign in</string>
 </resources>

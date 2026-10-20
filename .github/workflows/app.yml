@@ -69,7 +69,7 @@ jobs:
             adb install -r apk/KennyPvtHax-UI-Suite-debug.apk
             python3 app-ui/tests/device_smoke.py
             python3 tools/capture_app.py
-            python3 app-ui/tests/phase2_device.py --allow-data-reset
+            python3 app-ui/tests/phase2_device.py --allow-data-reset --dashboard
       - uses: actions/upload-artifact@v4
         if: always()
         with:

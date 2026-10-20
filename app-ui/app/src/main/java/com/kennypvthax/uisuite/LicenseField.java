@@ -20,7 +20,10 @@ final class LicenseField extends EditText {
         setHint(R.string.key_hint); setContentDescription(c.getString(R.string.key_hint));
         setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
         setTypeface(Typeface.create("sans-serif",Typeface.NORMAL));
-        setSingleLine(true); setSaveEnabled(false);
+        setSingleLine(true);
+        // setSingleLine replaces the transformation; apply masking after that call.
+        setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
+        setSaveEnabled(false);
         setImportantForAutofill(IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         setImeOptions(EditorInfo.IME_ACTION_DONE|EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING);
         setTextDirection(TEXT_DIRECTION_LTR);

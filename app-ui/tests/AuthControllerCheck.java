@@ -18,6 +18,11 @@ public final class AuthControllerCheck {
   c.submit(caller);service.callback.complete(AuthController.Result.failure(AuthController.Error.FAILED));check(c.phase()==AuthController.Phase.ERROR,"failure");
   c.submit(caller);service.callback.complete(AuthController.Result.verified(new AuthController.Session(false)));check(c.phase()==AuthController.Phase.SIGNED_IN,"verified provider interface transition");c.logout();check(c.phase()==AuthController.Phase.READY&&c.session()==null,"logout state");
   AuthController broken=new AuthController((key,callback)->{throw new IllegalStateException("test provider unavailable");});broken.submit(caller);check(broken.error()==AuthController.Error.FAILED,"provider failure contained");
+  c.enterDevelopmentPreview();check(c.phase()==AuthController.Phase.SIGNED_IN&&c.session().development,"explicit development preview");c.logout();check(c.session()==null,"preview logout");
+  String[] packages={"com.tencent.ig","com.pubg.krmobile","com.rekoo.pubgm","com.vng.pubgmobile"};
+  GameCatalog.Edition[] editions=GameCatalog.editions();check(editions.length==4,"four editions");
+  for(int i=0;i<4;i++)check(editions[i].packageName.equals(packages[i])&&GameCatalog.permits(packages[i]),"edition allowlist");
+  editions[0]=null;check(GameCatalog.editions()[0]!=null,"catalog array ownership");check(!GameCatalog.permits("unrelated.package")&&!GameCatalog.permits(null),"reject unrelated launch");
   c.close();Arrays.fill(caller,'\0');System.out.println("PASS auth state/cancellation, no configured service, key-buffer ownership, duplicate suppression, provider failure and logout contract; no production authentication claimed");
  }
 }

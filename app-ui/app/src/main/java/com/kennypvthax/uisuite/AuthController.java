@@ -25,6 +25,7 @@ final class AuthController {
  }
  private void finish(int own,Result result){synchronized(this){if(own!=generation||phase!=Phase.LOADING)return;request=null;if(result!=null&&result.session!=null){session=result.session;phase=Phase.SIGNED_IN;error=Error.NONE;}else{phase=Phase.ERROR;error=result==null?Error.FAILED:result.error;}}notifyListener();}
  void cancel(){AuthProvider.Request old;synchronized(this){++generation;old=request;request=null;if(phase==Phase.LOADING){phase=Phase.ERROR;error=Error.CANCELLED;}}if(old!=null)old.cancel();notifyListener();}
+ void enterDevelopmentPreview(){cancel();synchronized(this){session=new Session(true);phase=Phase.SIGNED_IN;error=Error.NONE;}notifyListener();}
  void logout(){cancel();synchronized(this){session=null;phase=Phase.READY;error=Error.NONE;}notifyListener();}
  private void notifyListener(){Runnable r;synchronized(this){r=listener;}r.run();}
  void close(){observe(null);cancel();}

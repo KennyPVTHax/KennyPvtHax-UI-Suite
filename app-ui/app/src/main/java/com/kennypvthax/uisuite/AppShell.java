@@ -25,6 +25,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
     private final TapFeedback sound;
     private final CredentialVault vault;
     private final AuthController auth;
+    private final GameActions games;
     private final boolean debug, pendingFixture;
     private final Handler main = new Handler(Looper.getMainLooper());
     private final ExecutorService io = Executors.newSingleThreadExecutor();
@@ -35,8 +36,12 @@ final class AppShell extends FrameLayout implements AutoCloseable {
     private TextView status;
     private LoadingMark spinner;
     private Dialog dialog;
-    private boolean closed, ioBusy, frozen;
+    private boolean closed, ioBusy, frozen, dashboard;
+    private int pageGeneration;
+    private TextView dashboardStatus;
+    private final GameCard[] cards=new GameCard[4];
     private int storageMessage;
+    private boolean restorePreview;
 
     AppShell(Activity owner, boolean isDebug) {
         super(owner);
@@ -45,6 +50,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         preferences=owner.getSharedPreferences("kenny-ui-suite",0);
         vault=new CredentialVault(owner);
         auth=new AuthController(pendingFixture?new DebugPendingAuthProvider():new UnconfiguredAuthProvider());
+        games=new AndroidGameActions(owner);
         sound=new TapFeedback(owner);
         sound.enabled=preferences.getBoolean("sounds",true);
         KennyComponents.reducedMotion=preferences.getBoolean("reduced",false);
@@ -104,7 +110,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         content.addView(hero,new LinearLayout.LayoutParams(-1,-2));space(content,18);
     }
     private void showLogin(){
-        content.removeAllViews();content.setId(R.id.login_screen);header();brandPanel();
+        dashboard=false;++pageGeneration;scroll.scrollTo(0,0);content.removeAllViews();content.setId(R.id.login_screen);header();brandPanel();
         text(content,R.string.welcome,24,Tokens.TEXT);space(content,10);
         LinearLayout panel=KennyComponents.panel(getContext());content.addView(panel,new LinearLayout.LayoutParams(-1,-2));
         text(panel,R.string.key_prompt,14,Tokens.SECONDARY);
@@ -126,6 +132,8 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         LinearLayout.LayoutParams messageParams=new LinearLayout.LayoutParams(0,-2,1);messageParams.setMarginStart(dp(10));statusRow.addView(status,messageParams);full(panel,statusRow);
 
         text(content,pendingFixture?R.string.fixture_notice:R.string.backend_notice,12,Tokens.SELECTED);
+        if(debug)full(content,button(R.string.preview_dashboard,R.id.preview_dashboard,this::enterPreview));
+        full(content,button(R.string.app_preferences,R.id.app_preferences,this::appearanceDialog));
         text(content,R.string.footer,11,Tokens.SECONDARY);
         content.setFocusableInTouchMode(true);content.requestFocus();updateStatus();
     }
@@ -137,7 +145,53 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         try{auth.submit(value);}finally{Arrays.fill(value,'\0');}
         updateStatus();
     }
-    private void authChanged(){updateStatus();}
+    private void authChanged(){
+        if(auth.phase()==AuthController.Phase.SIGNED_IN){if(!dashboard)showDashboard();}
+        else if(dashboard){showLogin();readSavedKey();}
+        else updateStatus();
+    }
+    void restorePreview(){if(debug){if(ioBusy)restorePreview=true;else enterPreview();}}
+    void enterPreview(){if(debug&&!ioBusy&&auth.phase()!=AuthController.Phase.LOADING)auth.enterDevelopmentPreview();}
+    boolean previewActive(){return debug&&dashboard&&auth.session()!=null&&auth.session().development;}
+    boolean back(){if(dashboard){sound.play();auth.logout();return true;}return false;}
+    private void showDashboard(){
+        if(key!=null)key.setText("");if(spinner!=null)spinner.running(false);
+        dashboard=true;++pageGeneration;content.removeAllViews();content.setId(R.id.dashboard_screen);scroll.scrollTo(0,0);
+        header();brandPanel();
+        text(content,auth.session()!=null&&auth.session().development?R.string.preview_notice:R.string.dashboard_session,12,Tokens.SELECTED);
+        text(content,R.string.dashboard_title,24,Tokens.TEXT);space(content,12);
+        text(content,R.string.game_variants,18,Tokens.TEXT);text(content,R.string.game_help,13,Tokens.SECONDARY);
+        dashboardStatus=text(content,R.string.files_unavailable,12,Tokens.SECONDARY);dashboardStatus.setId(R.id.dashboard_status);dashboardStatus.setAccessibilityLiveRegion(ACCESSIBILITY_LIVE_REGION_POLITE);
+        GameCatalog.Edition[] editions=GameCatalog.editions();int[] ids={R.id.game_global,R.id.game_korea,R.id.game_taiwan,R.id.game_vietnam};
+        for(int i=0;i<editions.length;i++){
+            final GameCatalog.Edition edition=editions[i];GameCard card=new GameCard(getContext(),edition,ids[i],sound,()->{
+                if(!games.launch(edition.packageName)){dashboardStatus.setText(R.string.launch_failed);dashboardStatus.announceForAccessibility(str(R.string.launch_failed));}
+            });cards[i]=card;full(content,card);
+        }
+        space(content,12);text(content,R.string.footer,12,Tokens.SECONDARY);
+        full(content,button(R.string.app_preferences,R.id.app_preferences,this::appearanceDialog));
+        full(content,button(R.string.logout,R.id.logout,auth::logout));text(content,R.string.app_info,11,Tokens.SECONDARY);
+        content.setFocusableInTouchMode(true);content.requestFocus();refreshEditions();
+    }
+    private void refreshEditions(){
+        final int generation=pageGeneration;GameCatalog.Edition[] editions=GameCatalog.editions();
+        io.execute(()->{
+            GameActions.Status[] states=new GameActions.Status[editions.length];
+            for(int i=0;i<editions.length;i++)states[i]=games.inspect(editions[i].packageName);
+            main.post(()->{if(closed||!dashboard||generation!=pageGeneration)return;for(int i=0;i<states.length;i++)cards[i].apply(states[i]);});
+        });
+    }
+    private void appearanceDialog(){
+        dialog=new Dialog(activity);dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        LinearLayout panel=KennyComponents.panel(getContext());panel.setId(R.id.preferences_dialog);panel.setBackground(KennyComponents.surface(getContext(),Tokens.ELEVATED,Tokens.OUTLINE,12));
+        text(panel,R.string.app_preferences,20,Tokens.TEXT);
+        KennyComponents.Check reduced=new KennyComponents.Check(getContext(),str(R.string.reduced_motion));reduced.setId(R.id.reduced_motion);reduced.setChecked(KennyComponents.reducedMotion);
+        reduced.setOnClickListener(v->{sound.play();KennyComponents.reducedMotion=reduced.isChecked();preferences.edit().putBoolean("reduced",reduced.isChecked()).apply();aurora.setReduced(reduced.isChecked());if(frozen)aurora.stop();if(spinner!=null)spinner.invalidate();});full(panel,reduced);
+        KennyComponents.Check sounds=new KennyComponents.Check(getContext(),str(R.string.ui_sounds));sounds.setId(R.id.tap_sounds);sounds.setChecked(sound.enabled);
+        sounds.setOnClickListener(v->{sound.play();sound.enabled=sounds.isChecked();preferences.edit().putBoolean("sounds",sound.enabled).apply();});full(panel,sounds);
+        full(panel,button(R.string.cancel,View.NO_ID,()->dialog.dismiss()));dialog.setContentView(panel);dialog.show();
+        if(dialog.getWindow()!=null){dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);dialog.getWindow().setLayout(Math.min(getWidth()-dp(32),dp(420)),-2);}
+    }
     private int authMessage(){
         switch(auth.error()){
             case KEY_REQUIRED:return R.string.key_required;
@@ -148,6 +202,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         }
     }
     private void updateStatus(){
+        if(dashboard)return;
         boolean loading=auth.phase()==AuthController.Phase.LOADING;
         key.setEnabled(!loading&&!ioBusy);save.setEnabled(!loading&&!ioBusy);forget.setEnabled(!loading&&!ioBusy);signIn.setEnabled(!loading&&!ioBusy);language.setEnabled(!loading&&!ioBusy);
         spinner.setVisibility(loading?VISIBLE:INVISIBLE);spinner.running(loading);
@@ -163,7 +218,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
             try{loaded=vault.load();}catch(GeneralSecurityException|IOException|IllegalArgumentException|ClassCastException|java.security.ProviderException|SecurityException e){failed=true;}
             final char[] value=loaded;final boolean error=failed;
             main.post(()->{
-                try{if(closed)return;if(value!=null&&key.length()==0)key.setText(new String(value));ioBusy=false;if(error)storageMessage=R.string.storage_error;updateStatus();}
+                try{if(closed)return;if(!dashboard&&value!=null&&key.length()==0)key.setText(new String(value));ioBusy=false;if(error)storageMessage=R.string.storage_error;updateStatus();if(restorePreview){restorePreview=false;enterPreview();}}
                 finally{if(value!=null)Arrays.fill(value,'\0');}
             });
         });
@@ -195,7 +250,7 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         if(dialog.getWindow()!=null){dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);}
         dialog.show();if(dialog.getWindow()!=null)dialog.getWindow().setLayout(Math.min(getWidth()-dp(32),dp(420)),-2);
     }
-    void resume(){if(!frozen)aurora.start();if(spinner!=null)spinner.running(auth.phase()==AuthController.Phase.LOADING);}
+    void resume(){if(!frozen)aurora.start();if(dashboard)refreshEditions();if(spinner!=null)spinner.running(auth.phase()==AuthController.Phase.LOADING);}
     void pause(){aurora.stop();spinner.running(false);if(dialog!=null){dialog.dismiss();dialog=null;}}
     void freezePreview(float seconds){if(!Float.isFinite(seconds)||seconds<0||seconds>60)return;frozen=true;aurora.stop();aurora.model.time=seconds;aurora.model.particleTime=seconds;aurora.invalidate();}
     public boolean dispatchTouchEvent(MotionEvent event){aurora.touch(event.getX()-aurora.getLeft(),event.getY()-aurora.getTop(),event.getActionMasked()!=MotionEvent.ACTION_UP&&event.getActionMasked()!=MotionEvent.ACTION_CANCEL);return super.dispatchTouchEvent(event);}

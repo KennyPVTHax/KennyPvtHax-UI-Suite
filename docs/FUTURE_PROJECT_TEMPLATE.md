@@ -24,3 +24,9 @@ From the suite root run `python3 tools/verify_suite.py`; from app-ui run `python
 ## Reference-based login template
 
 Use MainActivity/AppShell as a presentation example, AuthController/AuthProvider as a backend boundary and CredentialVault for app-owned encrypted local key persistence. Copying this UI does not supply a production authentication service. Supply the real protocol and test credentials separately; never hardcode accepted keys. Keep actual translations, relative RTL layouts, lifecycle cancellation and the original Aurora. Preserve masked native text editing and avoid saving secrets into View state. Use explicit development-only preview/fixtures when backend-dependent states must be inspected; never expose them as verified production behavior.
+
+## Copyable page integration checklist
+
+Copy `AppShell`, `GameCard` composition, `AuthController`/`AuthProvider` boundary and the original token/component/Aurora classes into a Java 17 Android Views module. Rename package/resources consistently. Keep app-private encrypted credentials only if your real backend needs them; implement its verified protocol before enabling production access. Replace the immutable catalog with authorized project data and implement real actions through `GameActions` or a new page-specific interface. Never copy a debug preview into a production authentication success path.
+
+Build: `python3 app-ui/build-debug.py --sdk "$ANDROID_HOME"`. Host checks: `python3 tools/check_app_screens.py` and `python3 tools/verify_suite.py`. Isolated emulator: `python3 app-ui/tests/phase2_device.py --allow-data-reset --dashboard`. Capture and inspect the actual translated pages, keyboard, cancellation and navigation. The original menu source is not an Android authentication or game-management backend.

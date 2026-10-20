@@ -49,3 +49,7 @@ Token-versus-call-site distinction: RadiusBtn10 is a declared theme token; the o
 ## Reference-based application screens
 
 The supplied video defines page organization, not the color system. Login preserves its small header/logo, full-width language selector, large branding panel, welcome area, masked key field, two save/forget actions and sign-in/status region. Existing crimson tokens, rounded custom controls and approved Aurora provide styling. Status space is reserved to limit layout jumps. Popup surfaces are opaque elevated graphite to prevent text bleed. The circular identity is the original primitive K emblem; Anime artwork is excluded. Android installed fonts remain the documented substitute for the restricted original Segoe UI font. Native TextView handles complex-script shaping while custom button backgrounds remain unchanged.
+
+## Reference dashboard composition
+
+The dashboard reuses the same circular header, language control and glass brand panel as login. The welcome/status region leads into four vertically stacked glass cards, followed by footer, appearance dialog access and logout. Card top rows pair a compact edition badge with name/status; package IDs sit above two equal-width 50dp action slots. The second slot uses the existing illuminated button tag. Unavailable operations stay visibly disabled, rather than simulating success. Source tokens, 12dp panel radius, 10dp button radius and 16dp internal padding are preserved. Arabic mirrors structural rows; package tokens remain LTR.

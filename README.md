@@ -39,3 +39,11 @@ adb shell am start -n com.kennypvthax.uisuite/.MainActivity --ez gallery true
 ```
 
 Selected source frames: shared/visual-reference/phase2/reference/. New real-emulator captures: shared/visual-reference/phase2/app/ as checkpoints pass. Loading capture uses an explicit debug-only pending request fixture, not a simulated successful login or artificial production delay. See app-ui/README.md for backend boundaries and secure-storage details.
+
+## Reference application — login and dashboard
+
+The normal app entry now presents the reference-based login page. English, Chinese, Hindi and Arabic are translated, with RTL layout for Arabic. Saved keys use Android Keystore AES-GCM and explicit Save/Forget actions. Authentication has **no configured production API**: Sign in never accepts a demonstration key.
+
+Debug APKs expose **Preview dashboard — local development** below the login card. This opens an explicitly labelled, unauthenticated local preview, independently of Sign in. Four reusable edition cards show real package installation status and offer normal Android launch intents when an edition is installed. The observed file-delete operation remains disabled because its authorized target/implementation was not supplied. Logout closes only local state. Reduced Motion and tap-sound preferences work on both pages. No game-modification functionality, Anime content or voices were added to the app.
+
+Build and UI test instructions are in [app-ui/README.md](app-ui/README.md). Actual emulator captures and reference crops are under [shared/visual-reference/phase2](shared/visual-reference/phase2); evidence and limitations are recorded in [docs/PHASE2_VERIFICATION.md](docs/PHASE2_VERIFICATION.md). Original `menu-ui/` remains unchanged.

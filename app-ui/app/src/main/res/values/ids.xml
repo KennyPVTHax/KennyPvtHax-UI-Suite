@@ -25,4 +25,15 @@
   <item type="id" name="game_vietnam" />
   <item type="id" name="reduced_motion" />
   <item type="id" name="tap_sounds" />
+  <item type="id" name="app_preferences" />
+  <item type="id" name="preferences_dialog" />
+  <item type="id" name="launch_global" />
+  <item type="id" name="launch_korea" />
+  <item type="id" name="launch_taiwan" />
+  <item type="id" name="launch_vietnam" />
+  <item type="id" name="files_global" />
+  <item type="id" name="files_korea" />
+  <item type="id" name="files_taiwan" />
+  <item type="id" name="files_vietnam" />
+  <item type="id" name="dashboard_status" />
 </resources>

@@ -53,7 +53,7 @@ python3 tools/capture_app.py --adb "$ANDROID_HOME/platform-tools/adb"
 
 Tests compare actual C++ and Java numeric outputs, deterministic stars, bounds, touch/release, frame-rate behavior, NaN handling and reduced motion. APK compilation/signature checks differ from emulator UI tests and physical-device performance/audio tests. Use `adb logcat -s AndroidRuntime` for Java crashes. Screenshot capture runs the actual installed APK; never a mockup. See `shared/visual-reference` for evidence. The supplied video now defines the login/dashboard page inventory. Production backend behavior remains unavailable without API/source specifications.
 
-Deterministic rendering mode for visual review: launch the gallery with `adb shell am start -n com.kennypvthax.uisuite/.MainActivity --ef preview_time 3` after force-stopping the process. This freezes presentation time only; it is a component-lab capture feature, not an application page or configuration action. `tools/capture_app.py` uses this mode and saves real gallery, controls, dialog and reduced-motion/audio-settings captures.
+Deterministic rendering mode for visual review: launch the debug gallery with `adb shell am start -n com.kennypvthax.uisuite/.MainActivity --ez gallery true --ef preview_time 3` after force-stopping the process. This freezes presentation time only; it is a component-lab capture feature, not an application page or configuration action. `tools/capture_app.py` uses this mode and saves real gallery, controls, dialog and reduced-motion/audio-settings captures.
 
 
 ## Actual login screen
@@ -89,3 +89,20 @@ python3 app-ui/tests/phase2_device.py --allow-data-reset
 The SDK-only script now explicitly marks its generated debug manifest debuggable, matching Gradle debug behavior; the source manifest does not enable debugging for release. A loading screenshot is produced through an explicit `auth_fixture=pending` debug intent and an actual pending controller request; this is not production authentication. Gallery/fixture intents are ignored in non-debuggable builds. Screenshot timing may use the existing `preview_time` mode while preserving real View rendering/input.
 
 Localization uses complete `values`, `values-zh`, `values-hi`, `values-ar` strings. Language dialogs show endonyms and persist selection. Activity recreation applies locale/layout direction to real controls. RTL tests compare header placement, and native text selection remains LTR for license tokens. Debug APK UI captures verify font fallback, clipping and keyboard behavior; physical-device and speaker verification remain separate.
+
+## Dashboard and backend boundaries
+
+Scroll below the login form in a **debug** build and select **Preview dashboard — local development**. This is a separate controller action that creates a development-only local view session; it never invokes or claims successful authentication. A persistent on-page banner identifies the preview. Release builds do not display this entry and ignore debug intent fixtures. A future verified `AuthProvider` result can route to the same dashboard without altering its cards. No production backend session storage, device-limit API or token renewal is implemented.
+
+`GameCatalog` defines the four observed names/package IDs. `GameCard` reuses the existing custom button painter and glass surface geometry. `GameActions` is the boundary for verified host behavior; `AndroidGameActions` inspects installation on the serialized IO worker, then refreshes Views only for the current page generation. On resume it refreshes status without recreating Aurora. Only the four package IDs appear in Android `<queries>`; no broad package/storage permissions are requested. Launching uses the package's public launcher intent, catches missing/restricted activities, and never changes game files. Installed/launchable states are real; a clean emulator normally reports Not installed and disables Launch.
+
+Both observed action positions are retained. File action is deliberately disabled and explained on-page: no authorized app-owned deletion target or behavior was specified. Backend integration must supply that contract before enabling it. Edition badges (GL/KR/TW/VN) replace third-party game icons, since those image assets were not supplied for reuse. Package IDs remain LTR within Arabic cards. Logout and Android Back clear local session state and return to login; explicitly saved ciphertext stays until Forget is selected. Unsaved keys are cleared on dashboard entry. Development preview can survive language recreation through a debuggable-only saved flag, never through a forged production session.
+
+The Appearance & feedback dialog uses the original circular checkboxes and persists `sounds`/`reduced`. This is a deliberate app extension for retained gallery preferences, not an observed extra page in the video. Reduced Motion stops Aurora frame callbacks and snaps component transitions. Sound feedback remains the one cached, throttled SoundPool tap sample; emulator visual tests cannot prove physical speaker output.
+
+```sh
+# Isolated emulator only; resets this app's test data.
+python3 app-ui/tests/phase2_device.py --allow-data-reset --dashboard
+```
+
+This runs the login tests, all four cards/disabled actions, scrolling, logout/Back, Arabic dashboard recreation, pause/resume, and persistent Reduced Motion/tap settings. Captures come from the installed APK. No target game was installed in CI, so successful launching of the real editions remains a device test. No backend/file operation is claimed verified.

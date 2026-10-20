@@ -17,3 +17,15 @@ Actual implementations: `app-ui/app/src/main/java/com/kennypvthax/uisuite/`, ori
 ## Applying a real screen reference
 
 Use docs/REFERENCE_VIDEO_ANALYSIS.md and its timestamped, cropped frames. Recreate observed organization first, then reuse KennyComponents, BrandMark, LicenseField and the shared Aurora instance. Keep localization in Android resource bundles and use relative layout parameters. Never recover authentication or file-management behavior from button labels: wire the UI to explicit interfaces, with honest unavailable states until real source/protocol evidence exists. Capture actual APK states with app-ui/tests/phase2_device.py; clearly label its debug-only pending-provider loading frame. Preserve the gallery as a separate debug regression route.
+
+## Adding a dashboard card or page
+
+1. Define immutable display data separately from actions (`GameCatalog` is the current example).
+2. Compose existing `KennyComponents` paint and ordinary semantic Views; use 48dp or larger touch targets.
+3. Own async work at the page shell, never inside `onDraw`; compare page generation before applying results.
+4. Keep authentication and package/file actions behind explicit interfaces. Missing integration must show unavailable, never fabricated success.
+5. Route verified sessions separately from explicitly labelled debug previews. Gate debug entry in the Activity using actual debuggability.
+6. Keep one Aurora/SoundPool owner across local navigation and release both with Activity destruction.
+7. Add all four string bundles, RTL checks, real emulator capture and a backend-boundary note.
+
+Current preview: debug Login → Preview dashboard → scroll four cards → Log out. Production Login → verified provider result → dashboard is an available integration route only; no real authentication provider is configured.

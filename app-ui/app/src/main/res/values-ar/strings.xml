@@ -42,4 +42,8 @@
   <string name="reduced_motion">تقليل الحركة</string>
   <string name="ui_sounds">أصوات النقر</string>
   <string name="app_info">KennyPvtHax • حزمة واجهات Android</string>
+  <string name="checking_edition">جارٍ التحقق من التثبيت…</string>
+  <string name="edition_unknown">حالة التثبيت غير متاحة</string>
+  <string name="dashboard_session">لوحة التحكم • جلسة متصلة</string>
+  <string name="back_to_login">العودة إلى تسجيل الدخول</string>
 </resources>

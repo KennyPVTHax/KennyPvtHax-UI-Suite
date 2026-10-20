@@ -42,4 +42,8 @@
   <string name="reduced_motion">减少动态效果</string>
   <string name="ui_sounds">轻触音效</string>
   <string name="app_info">KennyPvtHax • Android 界面套件</string>
+  <string name="checking_edition">正在检查安装状态…</string>
+  <string name="edition_unknown">无法获取安装状态</string>
+  <string name="dashboard_session">控制面板 · 已连接会话</string>
+  <string name="back_to_login">返回登录</string>
 </resources>
