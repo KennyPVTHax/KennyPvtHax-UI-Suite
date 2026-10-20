@@ -116,12 +116,15 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         forget=button(R.string.forget_key,R.id.forget_key,()->store(true));
         LinearLayout.LayoutParams half=new LinearLayout.LayoutParams(0,dp(50),1);half.setMarginEnd(dp(6));actions.addView(save,half);
         actions.addView(forget,new LinearLayout.LayoutParams(0,dp(50),1));full(panel,actions);
-        signIn=button(R.string.sign_in,R.id.sign_in,this::submit);signIn.setTag("illuminated");full(panel,signIn);
+        signIn=button(R.string.sign_in,R.id.sign_in,this::submit);signIn.setTag("illuminated");
+        cancel=button(R.string.cancel,R.id.auth_cancel,auth::cancel);cancel.setVisibility(INVISIBLE);
+        FrameLayout submitSlot=new FrameLayout(getContext());submitSlot.addView(signIn,new FrameLayout.LayoutParams(-1,-1));submitSlot.addView(cancel,new FrameLayout.LayoutParams(-1,-1));
+        LinearLayout.LayoutParams submitParams=new LinearLayout.LayoutParams(-1,dp(50));submitParams.topMargin=dp(10);panel.addView(submitSlot,submitParams);
         LinearLayout statusRow=new LinearLayout(getContext());statusRow.setGravity(Gravity.CENTER_VERTICAL);statusRow.setMinimumHeight(dp(96));
         spinner=new LoadingMark(getContext());spinner.setId(R.id.auth_loading);spinner.setVisibility(INVISIBLE);statusRow.addView(spinner,new LinearLayout.LayoutParams(dp(28),dp(28)));
         status=new TextView(getContext());status.setId(R.id.auth_status);status.setTextColor(Tokens.SECONDARY);status.setTextSize(13);status.setAccessibilityLiveRegion(ACCESSIBILITY_LIVE_REGION_POLITE);
         LinearLayout.LayoutParams messageParams=new LinearLayout.LayoutParams(0,-2,1);messageParams.setMarginStart(dp(10));statusRow.addView(status,messageParams);full(panel,statusRow);
-        cancel=button(R.string.cancel,R.id.auth_cancel,auth::cancel);cancel.setVisibility(GONE);full(panel,cancel);
+
         text(content,pendingFixture?R.string.fixture_notice:R.string.backend_notice,12,Tokens.SELECTED);
         text(content,R.string.footer,11,Tokens.SECONDARY);
         content.setFocusableInTouchMode(true);content.requestFocus();updateStatus();
@@ -148,8 +151,9 @@ final class AppShell extends FrameLayout implements AutoCloseable {
         boolean loading=auth.phase()==AuthController.Phase.LOADING;
         key.setEnabled(!loading&&!ioBusy);save.setEnabled(!loading&&!ioBusy);forget.setEnabled(!loading&&!ioBusy);signIn.setEnabled(!loading&&!ioBusy);language.setEnabled(!loading&&!ioBusy);
         spinner.setVisibility(loading?VISIBLE:INVISIBLE);spinner.running(loading);
-        cancel.setVisibility(loading?VISIBLE:GONE);
+        cancel.setVisibility(loading?VISIBLE:INVISIBLE);signIn.setVisibility(loading?INVISIBLE:VISIBLE);
         status.setText(loading?R.string.loading:ioBusy?R.string.storage_busy:storageMessage!=0?storageMessage:authMessage());
+        if(loading||auth.phase()==AuthController.Phase.ERROR||storageMessage!=0)status.post(()->{if(!closed&&status.isAttachedToWindow())status.requestRectangleOnScreen(new android.graphics.Rect(0,0,status.getWidth(),status.getHeight()),KennyComponents.reducedMotion);});
         status.setTextColor((storageMessage==R.string.storage_error||storageMessage==R.string.key_required||(storageMessage==0&&auth.phase()==AuthController.Phase.ERROR))?0xffe5776a:Tokens.SECONDARY);
     }
     private void readSavedKey(){

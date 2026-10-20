@@ -2,6 +2,7 @@ package com.kennypvthax.uisuite;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.text.InputType;
 import android.view.Gravity;
@@ -18,6 +19,7 @@ final class LicenseField extends EditText {
         setTextSize(16); setTextColor(Tokens.TEXT); setHighlightColor(0x59ff5664); setHintTextColor(Tokens.SECONDARY);
         setHint(R.string.key_hint); setContentDescription(c.getString(R.string.key_hint));
         setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        setTypeface(Typeface.create("sans-serif",Typeface.NORMAL));
         setSingleLine(true); setSaveEnabled(false);
         setImportantForAutofill(IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         setImeOptions(EditorInfo.IME_ACTION_DONE|EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING);
