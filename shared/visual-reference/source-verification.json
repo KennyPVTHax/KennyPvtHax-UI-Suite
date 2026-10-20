@@ -1,0 +1,9 @@
+{
+  "baseline": "aa3411056ccd747787c80078c52165b80020482c",
+  "unchanged_original_files": 3459,
+  "original_files": 3460,
+  "static_libraries": 40,
+  "numeric_samples": 1575,
+  "max_absolute_error": 0.0,
+  "device_verified": false
+}

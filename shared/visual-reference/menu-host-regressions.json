@@ -1,0 +1,86 @@
+{
+  "commit": "aa3411056ccd747787c80078c52165b80020482c",
+  "sanitizers": true,
+  "tests": [
+    {
+      "test": "menu",
+      "result": "PASS",
+      "seconds": 177.493
+    },
+    {
+      "test": "launcher",
+      "result": "PASS",
+      "seconds": 182.443
+    },
+    {
+      "test": "audio",
+      "result": "PASS",
+      "seconds": 30.697
+    },
+    {
+      "test": "theme",
+      "result": "PASS",
+      "seconds": 11.491
+    },
+    {
+      "test": "aurora",
+      "result": "PASS",
+      "seconds": 27.057
+    },
+    {
+      "test": "effects",
+      "result": "PASS",
+      "seconds": 5.806
+    },
+    {
+      "test": "characters",
+      "result": "PASS",
+      "seconds": 26.574
+    },
+    {
+      "test": "media",
+      "result": "PASS",
+      "seconds": 42.692
+    },
+    {
+      "test": "diagnostics",
+      "result": "PASS",
+      "seconds": 10.96
+    },
+    {
+      "test": "fonts",
+      "result": "PASS",
+      "seconds": 17.344
+    },
+    {
+      "test": "continuation",
+      "result": "PASS",
+      "seconds": 23.463
+    },
+    {
+      "test": "electric",
+      "result": "PASS",
+      "seconds": 23.292
+    },
+    {
+      "test": "embedded",
+      "result": "PASS",
+      "seconds": 34.444
+    },
+    {
+      "test": "presentation",
+      "result": "PASS",
+      "seconds": 27.302
+    },
+    {
+      "test": "supplied",
+      "result": "PASS",
+      "seconds": 64.795
+    },
+    {
+      "test": "audio-recovery",
+      "result": "PASS",
+      "seconds": 36.346
+    }
+  ]
+}

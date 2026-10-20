@@ -1,0 +1,44 @@
+name: Preserved Menu Native Library
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  menu:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: menu-ui
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install tools
+        run: |
+          sdkmanager 'ndk;25.2.9519653'
+          sudo apt-get update -qq
+          sudo apt-get install -y g++ zlib1g-dev libssl-dev python3-pil
+      - name: Preserve and verify all UI behavior
+        run: |
+          python3 tools/generate_embedded_media.py --output .build/embedded-media
+          python3 tests/kenny_repository_media_check.py
+          python3 tests/run_ui_regressions.py --sanitizers --user-media "$PWD" --presentation-media "$PWD" --embedded-media "$PWD/.build/embedded-media" --label suite-ci
+      - name: Build original ARM64 module
+        run: |
+          "$ANDROID_HOME/ndk/25.2.9519653/ndk-build" NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=jni/Android.mk NDK_APPLICATION_MK=jni/Application.mk KPH_DIAGNOSTICS=1 KPH_BUILD_ID="$(git rev-parse HEAD)" -j2
+          python3 tools/verify_embedded_library.py --library libs/arm64-v8a/libAnoy.so --media .build/embedded-media --output .verification/suite-embedded.json
+          sha256sum libs/arm64-v8a/libAnoy.so
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Preserved-Menu-ARM64-SO
+          path: |
+            menu-ui/libs/arm64-v8a/libAnoy.so
+            menu-ui/.verification/suite-embedded.json
+          include-hidden-files: true
+          if-no-files-found: error

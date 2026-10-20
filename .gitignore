@@ -1,87 +1,12 @@
-# Reference frames and temporary verification output
-.reference/
-.build/
-.verification/
-previews/stage2/
-previews/stage3/
-previews/stage4/
-previews/stage5/
-previews/stage5_5/
-previews/stage5_6/
-previews/phase_b/
-previews/phase_c1/
+**/.gradle/
+**/build/
+**/local.properties
+**/.verification/
+**/.build/
+**/obj/
+**/libs/
+!menu-ui/jni/**/libs/
+*.log
 
-# Generated output and supplied binary libraries
-obj/
-libs/
-build/
-*.o
-*.a
-*.so
-*.lib
-*.apk
-*.aab
-*.zip
-*.mp4
-
-# Local credentials, configuration, and original backup copies
-.env
-.env.*
-local.properties
-*.keystore
-*.jks
-*.pem
-*.key
-jni/Helper/Login.h
-*.bak
-
-# C2 private character media and generated evidence
-previews/phase_c2/
-assets/anime/**/*.png
-assets/anime/**/*.webp
-assets/anime/**/*.wav
-assets/anime/**/*.mp3
-assets/anime/**/*.ogg
-
-# C3 private renderer previews and asset review
-previews/phase_c3/
-
-# Authorized public backup: preserve vetted original build inputs and only CC0 runtime clips
-!jni/curl/**/*.a
-!jni/Dobby/**/*.a
-!jni/prebuilt/**/*.a
-!jni/shadowhook/*.a
-!jni/Helper/Login.h
-!assets/anime/highschool_dxd_rias/voice/cici_hello.wav
-!assets/anime/highschool_dxd_rias/voice/cici_see_you_later.wav
-!assets/anime/highschool_dxd_rias/voice/cici_okay_happy.wav
-!assets/anime/highschool_dxd_rias/voice/cici_okay_normal.wav
-!assets/anime/highschool_dxd_rias/voice/cici_no_problem.wav
-# The owner-supplied original jni/SDK/ is tracked in this repository.
-
-# Generated full UI continuation captures
-previews/full-continuation/
-
-# Private supplied-media evidence and Python caches
-previews/supplied-media/
-__pycache__/
-*.pyc
-
-# Generated Checkpoint A voice-diagnostic captures
-previews/audio-recovery-a/
-
-# User-supplied video/logo files and private renderer captures
-assets/presentation/*.png
-assets/presentation/*.jpg
-assets/presentation/*.mp4
-previews/anime-video-logo/
-
-# Owner-authorized public runtime assets; only exact inventory entries are kept.
-!assets/anime/highschool_dxd_rias/character.png
-!assets/anime/highschool_dxd_rias/voice/user_aim.wav
-!assets/anime/highschool_dxd_rias/voice/user_aimoff.wav
-!assets/anime/highschool_dxd_rias/voice/user_bullet.wav
-!assets/anime/highschool_dxd_rias/voice/user_extrafeatures.wav
-!assets/presentation/anime-background.mp4
-!assets/presentation/anime-fallback.png
-!assets/presentation/launcher.png
+**/*.keystore
+**/*.jks

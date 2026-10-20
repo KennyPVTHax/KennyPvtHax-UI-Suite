@@ -1,0 +1,1 @@
+Reusable Android code: ../../app-ui/app/src/main/java/com/kennypvthax/uisuite/KennyComponents.java. Original authority: ../../menu-ui/jni/ClaudeTheme.h and KennyControls.h. No duplicated source implementation is maintained here.

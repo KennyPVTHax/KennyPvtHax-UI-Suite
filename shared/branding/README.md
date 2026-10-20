@@ -1,0 +1,1 @@
+App wordmark uses text and the exact original font, not Anime launcher artwork. menu.ttf was decoded little-endian from menu-ui/jni/ANOY/CustomFont.h. It is not a newly licensed font; retain/check original metadata before wider reuse. Tap WAV is original synthesized interface audio generated for this suite, not a character recording.
