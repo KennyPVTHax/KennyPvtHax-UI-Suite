@@ -6,7 +6,7 @@
 | Glass panel | KennyPanels and transparent child regions | KennyComponents.panel,12dp corners |
 | Circular check | KennyControls::Checkbox | KennyComponents.Check, semantic CompoundButton |
 | Slider | KennyControls::SliderFloat/SliderInt | KennyComponents.Slider, semantic SeekBar |
-| Header | KennyIdentity::Draw | Gallery wordmark with exact font asset |
+| Header | KennyIdentity::Draw | Gallery wordmark with Android installed sans-serif (documented font-rights gap) |
 | Navigation | Claude::NavItem/PillTab | Gallery component/motion lab navigation |
 | Field/dialog | Native ImGui field/popup tokens | KennyComponents.field / Gallery local Dialog |
 | Aurora | KennyAurora::State/Draw | AuroraModel/AuroraBackground |

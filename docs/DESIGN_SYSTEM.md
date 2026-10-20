@@ -34,7 +34,7 @@ Circular checkbox radius=.46×size; state rate22; bright check on crimson disc w
 
 ## Type
 
-The exact menu font bytes are `jni/ANOY/CustomFont.h`, baked32px for the menu with per-window scale. Default overlay font16px; Font Awesome glyphs merge at30px in menu. App `assets/menu.ttf` is extracted little-endian from the same uint array, with Android sp text sizing (title26, section17, control15, helper12–14). No claim of identical font hinting, line-height, weight or fallback glyph rasterization across ImGui and Android. Font name/license metadata remains upstream; do not infer a new license from extraction. Android system font scaling is honored.
+The exact menu font bytes are `jni/ANOY/CustomFont.h`, baked32px for the menu with per-window scale. Default overlay font16px; Font Awesome glyphs merge at30px in menu. The app uses Android installed sans-serif because the recovered Segoe UI font has restricted embedding terms; Android sp text sizing is (title26, section17, control15, helper12–14). No claim of identical font hinting, line-height, weight or fallback glyph rasterization across ImGui and Android. Font name/license metadata remains upstream; do not infer a new license from extraction. Android system font scaling is honored.
 
 ## Motion and lighting
 

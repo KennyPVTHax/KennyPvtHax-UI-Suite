@@ -20,6 +20,7 @@ assert len(list((r/'menu-ui/jni').rglob('*.a')))==40
 s=(r/'menu-ui/jni/ClaudeTheme.h').read_text();t=json.loads((r/'shared/design-tokens/tokens.json').read_text())
 for name,value in t['colors'].items():assert re.search(r'\b'+name+r'\s*= Hex\(0x'+value[1:],s,re.I),name
 app=r/'app-ui/app/src/main'
+assert not (app/'assets/menu.ttf').exists()
 assert not list(app.rglob('*.so')) and not list(app.rglob('*.mp4')) and not list(app.rglob('*.ogg'))
 assert len(list((app/'res/raw').glob('*')))==1
 assert not any(x.is_symlink() and not x.exists() for x in r.rglob('*') if '.git' not in x.parts)

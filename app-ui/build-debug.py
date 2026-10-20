@@ -12,7 +12,7 @@ for n in ('aapt2','d8','zipalign','apksigner'):
  if not (tools/(n+('.bat' if os.name=='nt' and n in ('d8','apksigner') else ext))).exists():raise SystemExit('Missing SDK tool '+n)
 run(tools/('aapt2'+ext),'compile','--dir',r/'app/src/main/res','-o',out/'resources.zip')
 manifest=(r/'app/src/main/AndroidManifest.xml').read_text().replace('<manifest ','<manifest package="com.kennypvthax.uisuite" android:versionCode="1" android:versionName="0.1-foundation" ',1);(out/'AndroidManifest.xml').write_text(manifest)
-run(tools/('aapt2'+ext),'link','-o',out/'unsigned.apk','--manifest',out/'AndroidManifest.xml','-I',android,'--java',out/'generated','--min-sdk-version','26','--target-sdk-version','35','-A',r/'app/src/main/assets',out/'resources.zip')
+run(tools/('aapt2'+ext),'link','-o',out/'unsigned.apk','--manifest',out/'AndroidManifest.xml','-I',android,'--java',out/'generated','--min-sdk-version','26','--target-sdk-version','35',*(['-A',r/'app/src/main/assets'] if (r/'app/src/main/assets').is_dir() else []),out/'resources.zip')
 classes=out/'classes';classes.mkdir(exist_ok=True)
 # javac argfile avoids Windows/Unix command-line length and quoting differences.
 sources=list((r/'app/src/main/java').rglob('*.java'))+list((out/'generated').rglob('*.java'));argfile=out/'javac.args';argfile.write_text('\n'.join('"'+str(x).replace('\\','/')+'"' for x in sources))

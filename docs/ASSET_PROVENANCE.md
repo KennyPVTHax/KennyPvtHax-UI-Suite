@@ -4,7 +4,7 @@ Menu assets, SDK, static archives and upstream notices are preserved exactly fro
 
 App assets:
 
-- `menu.ttf`: byte-extracted from `menu-ui/jni/ANOY/CustomFont.h`. Font metadata identifies **Segoe UI Regular**. This is the actual existing menu font, not a generated substitute. No separate font redistribution grant has been recovered; retaining the original reference does not establish an independent font license for other applications. Review applicable Microsoft font embedding terms before redistributing standalone app builds beyond the owner's project. No new permissive license is asserted.
+- Original font recovered from `menu-ui/jni/ANOY/CustomFont.h`: **Microsoft Segoe UI Regular**, copyright2022Microsoft, OS/2fsType8, embedded license restricts use to specified Microsoft product/content terms and permitted embedding. No standalone-app redistribution grant was established. The separately extracted font was removed from app-ui; its current default is Android's installed sans-serif. Original menu bytes/history are retained, not relicensed. This known typography gap requires a separately permitted matching font before claiming exact type parity. Initial suite commit e44e010 included an extracted copy; the following normal commit removes it without rewriting history. Do not treat that historical copy as cleared for reuse.
 - `res/raw/tap.wav`: original45ms, monoPCM16/48kHz synthesized decaying1150Hz tap, created for this suite. No sampled or character dialogue.
 - No Anime video, artwork, launcher photograph or voice recordings are copied into app-ui. Those remain in the preserved menu only.
 
